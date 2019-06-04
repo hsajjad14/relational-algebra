@@ -1,0 +1,67 @@
+group: UIBK - R, S, T
+description: Tables from and for the lecture [Databases: Foundations, Data Models and System Concepts - University of Innsbruck](http://dbis-informatik.uibk.ac.at/249-0-VO-Datenbanksysteme.html) chapter 3
+
+Student = {
+sID, surName, firsrtName, campus, email, cgpa
+
+111, 'sajjad', 'haider', utm, 'hs@gmail.com', 3.1
+112, 'zingaro', 'dan', utsg, 'dg@mail.com', 4.0
+113, 'zhang', 'lisa', utm, 'lzg@mail.com', 3.8
+114, 'farooqi', 'umair', utm, 'ufg@mail.com', 2.6
+115, 'alvi', 'saif', utsg, 'sag@mail.com', 2.0
+
+
+}
+
+Course = {
+dept, cNum, name, breadth
+
+'csc', 343, 'relational databases', false
+'csc', 373, 'algorithms 3rd year', false
+'ers', 101, 'earth and space sci', true
+'csc', 343, 'relational databases', true
+'csc', 108, 'intro to programming', false
+'csc', 207, 'intro to software design', false
+'csc', 463, 'some 4th year course', false
+
+
+}
+
+Offering = {
+oId, dept, cNum, term, instructor
+
+11019,'csc', 343, 2019, 'Atwood'
+11020,'csc', 369, 2019, 'Cook'
+11018,'csc', 379, 2009, 'Pitassi'
+11017,'csc', 384, 20099, 'Picky'
+11016,'csc', 463, 20099, 'Cook'
+11015,'csc', 463, 20099, 'Pitassi'
+
+
+}
+
+Took = {
+sID ,oId, grade
+
+
+111, 11019, 85
+112, 11019, 100
+113, 11019, 95
+114, 11019, 100
+115, 11019, 50
+116, 11019, 40
+112, 11020, 50
+116, 11019, 40
+117, 11018, 100
+118, 11015, 40
+111, 11015, 90
+112, 11018, 100
+112, 11015, 100
+112, 11017, 100
+117, 11016, 100
+
+
+
+
+
+}

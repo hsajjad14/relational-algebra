@@ -1,0 +1,72 @@
+
+\documentclass{article}
+
+% Packages
+\usepackage{amsmath, amssymb}   % math formatting & symbols
+\usepackage{graphicx}           % insert graphics
+%\usepackage{eulervm, bookman}   % fonts for math & symbols
+\usepackage{fullpage}          % fullpage margins
+
+\begin{document}
+% Title 
+\title{CSC343 A1}
+\author{Haider Sajjad, Muskan Patpatia}
+\maketitle
+
+\begin{LARGE}
+\textbf{Relations}
+\end{LARGE}
+
+\begin{itemize}
+\item Restaurant(name, owner, capacity, country)
+\item Patron(PID, fname, lname, birthday)
+\item Dish(DID, name, dietary)
+\item Reservation(RID, PID, rname, date)
+\item Order(RID, DID, number)
+\item Rating(PID, rname, rating)
+\end{itemize}
+
+
+\begin{LARGE}
+\textbf{Part 1}
+\end{LARGE}
+
+
+
+\begin{enumerate}
+    \item % 1 
+    Question: Report the name of the Patron that has given the highest rating to a restaurant. If there are ties,
+report all of them.\\
+    
+        Let $r1$ and $r2$ be two Rating relations
+        
+        \begin{align}
+        r1:= \rho \text{  r1 Rating}  \\
+        r2:= \rho \text{  r2 Rating}
+		\end{align}     
+		
+		 Let nottop be the relation of all PID's that are not the maximum
+		\begin{align}
+        nottop:= \Pi_{(r1.PID)}\;(\sigma_{r2.rating > r1.rating \: \wedge \: r2.PID  \neq r1.PID}\;(r1 \times r2))
+		\end{align} 
+		Let temp be the relation of all maximums, pid's that are in Rating but not in nottop. Natural Join temp with patron to get the names of the Patrons with pids in temp.
+		\begin{align}
+        temp:= 	(\Pi_{PID} Rating) - nottop\\
+        \Pi_{fname,lname}\;(temp \bowtie Patron)
+		\end{align} 
+		
+       
+    \item % 2 
+        Question: Report the name of the restaurant for which the highest number of reservations were made. If there
+are ties report all of them.\\
+
+        Can't be done with relational algebra operations. 
+    \item % 3
+        Third question here
+       
+    \item % 4 
+        Fourth question goes here
+\end{enumerate}
+
+
+\end{document}

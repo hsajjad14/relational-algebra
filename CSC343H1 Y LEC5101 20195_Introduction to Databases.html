@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://q.utoronto.ca/courses/95202 -->
+<html class="" dir="ltr" lang="en-ca"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>CSC343H1 Y LEC5101 20195:Introduction to Databases</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/css" rel="stylesheet">
+  <!--[if lte IE 9]> <meta http-equiv=refresh content="0; URL=/ie-9-is-not-supported.html" /> <![endif]-->
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://du11hjcvx0uqb.cloudfront.net/br/dist/images/favicon-e10d657a73.ico">
+  <link rel="apple-touch-icon" href="https://du11hjcvx0uqb.cloudfront.net/br/dist/images/apple-touch-icon-585e5d997d.png">
+      <link rel="alternate" type="application/atom+xml" title="Course Atom Feed" href="https://q.utoronto.ca/feeds/courses/enrollment_JAA55KwtvhFzjhv3hBN9MhmwotqzGkWXqjJsGCuR.atom">
+
+  <link rel="stylesheet" media="all" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/variables-bb3d77e122d78a31c5ed488617cc8913.css">
+  <link rel="stylesheet" media="all" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/common-a676a39b0b.css">
+  <script type="text/javascript" async="" src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/ga.js.download"></script><script>
+//<![CDATA[
+
+!function(){
+  function get(u){document.write('<scr'+'ipt src="'+ u +'"></sc'+'ript>')}
+  var o,s,v;
+  if (!(window.Promise && Object.assign && Object.values && [].find && [].includes && (o={},s=Symbol(),v={},o[s]=v,o[s]===v) && (function f(){}).bind().name==='bound f')) {
+    get("https://du11hjcvx0uqb.cloudfront.net/br/dist/ie11-polyfill-0a45f348c1.js");
+  }
+  window.fetch || get("https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js");
+}();
+      
+//]]>
+</script>
+  
+  <meta name="apple-itunes-app" content="app-id=480883488">
+<link rel="manifest" href="https://q.utoronto.ca/web-app-manifest/manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#002a5c">
+  <link rel="stylesheet" media="all" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/course_show-a61db6ba4b.css">
+<link rel="stylesheet" media="all" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/dashboard-7f1bed9c77.css">
+<link rel="stylesheet" media="all" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/react_todo_sidebar-c3d01d6a66.css">
+<link rel="stylesheet" media="all" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/tinymce-cfde159ef1.css">
+<link rel="stylesheet" media="all" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/syllabus-e36f6bbece.css">
+<link rel="stylesheet" media="all" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/new_user_tutorials-6ae9cfd448.css">
+  
+  <link rel="stylesheet" media="all" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/uoft-new.css">
+  <script>
+    function _earlyClick(e){
+      var c = e.target
+      while (c && c.ownerDocument) {
+        if (c.getAttribute('href') == '#' || c.getAttribute('data-method')) {
+          e.preventDefault()
+          (_earlyClick.clicks = _earlyClick.clicks || []).push(c)
+          break
+        }
+        c = c.parentNode
+      }
+    }
+    document.addEventListener('click', _earlyClick)
+  </script>
+  <script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/variables-bb3d77e122d78a31c5ed488617cc8913.js.download" defer="defer"></script>
+  <script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/vendor.bundle-6b62fcf794.js.download" defer="defer"></script>
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/New_York-c3226761e3.js.download" defer="defer"></script>
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/en_CA-21c9309bc0.js.download" defer="defer"></script>
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/en-ca.bundle-740bc647d2.js.download" defer="defer"></script>
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/appBootstrap.bundle-d5160e3a24.js.download" defer="defer"></script>
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/common.bundle-8536ac2698.js.download" defer="defer"></script>
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/syllabus.bundle-7d2cd851ff.js.download" defer="defer"></script>
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/courses_show.bundle-8ad4d69332.js.download" defer="defer"></script>
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/course.bundle-3f9b999f49.js.download" defer="defer"></script>
+<style type="text/css"></style><style type="text/css">.mejs-offscreen{clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:polygon(0px 0,0 0,0 0,0 0);position:absolute!important;height:1px;width:1px;overflow:hidden}.mejs-container{position:relative;background:#000;font-family:Helvetica,Arial,serif;text-align:left;vertical-align:top;text-indent:0}.mejs-fill-container,.mejs-fill-container .mejs-container{width:100%;height:100%}.mejs-fill-container{overflow:hidden}.mejs-container:focus{outline:0}.me-plugin{position:absolute}.mejs-embed,.mejs-embed body{width:100%;height:100%;margin:0;padding:0;background:#000;overflow:hidden}.mejs-fullscreen{overflow:hidden!important}.mejs-container-fullscreen{position:fixed;left:0;top:0;right:0;bottom:0;overflow:hidden;z-index:1000}.mejs-container-fullscreen .mejs-mediaelement,.mejs-container-fullscreen video{width:100%;height:100%}.mejs-clear{clear:both}.mejs-background{position:absolute;top:0;left:0}.mejs-mediaelement{position:absolute;top:0;left:0;width:100%;height:100%}.mejs-poster{position:absolute;top:0;left:0;background-size:contain;background-position:50% 50%;background-repeat:no-repeat}:root .mejs-poster img{display:none}.mejs-poster img{border:0;padding:0}.mejs-overlay{position:absolute;top:0;left:0}.mejs-overlay-play{cursor:pointer}.mejs-overlay-button{position:absolute;top:50%;left:50%;width:100px;height:100px;margin:-50px 0 0 -50px;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/746c3af7a145a09239a36e5ef61cfea0.svg) no-repeat}.no-svg .mejs-overlay-button{background-image:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/716436fb3df0d29e6b37dd62d952676a.png)}.mejs-overlay:hover .mejs-overlay-button{background-position:0 -100px}.mejs-overlay-loading{position:absolute;top:50%;left:50%;width:80px;height:80px;margin:-40px 0 0 -40px;background:#333;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/703c659e4bf563a05c6338a1727e006c.png);background:rgba(0,0,0,.9);background:-webkit-gradient(linear,0 0,0 100%,from(rgba(50,50,50,.9)),to(rgba(0,0,0,.9)));background:-webkit-linear-gradient(top,rgba(50,50,50,.9),rgba(0,0,0,.9));background:-moz-linear-gradient(top,rgba(50,50,50,.9),rgba(0,0,0,.9));background:-o-linear-gradient(top,rgba(50,50,50,.9),rgba(0,0,0,.9));background:-ms-linear-gradient(top,rgba(50,50,50,.9),rgba(0,0,0,.9));background:linear-gradient(rgba(50,50,50,.9),rgba(0,0,0,.9))}.mejs-overlay-loading span{display:block;width:80px;height:80px;background:transparent url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/76b326f4d44222126fee21076595bef5.gif) 50% 50% no-repeat}.mejs-container .mejs-controls{position:absolute;list-style-type:none;margin:0;padding:0;bottom:0;left:0;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/703c659e4bf563a05c6338a1727e006c.png);background:rgba(0,0,0,.7);background:-webkit-gradient(linear,0 0,0 100%,from(rgba(50,50,50,.7)),to(rgba(0,0,0,.7)));background:-webkit-linear-gradient(top,rgba(50,50,50,.7),rgba(0,0,0,.7));background:-moz-linear-gradient(top,rgba(50,50,50,.7),rgba(0,0,0,.7));background:-o-linear-gradient(top,rgba(50,50,50,.7),rgba(0,0,0,.7));background:-ms-linear-gradient(top,rgba(50,50,50,.7),rgba(0,0,0,.7));background:linear-gradient(rgba(50,50,50,.7),rgba(0,0,0,.7));height:30px;width:100%}.mejs-container .mejs-controls div{list-style-type:none;background-image:none;display:block;float:left;margin:0;padding:0;width:26px;height:26px;font-size:11px;line-height:11px;font-family:Helvetica,Arial,serif;border:0}.mejs-controls .mejs-button button{cursor:pointer;display:block;font-size:0;line-height:0;text-decoration:none;margin:7px 5px;padding:0;position:absolute;height:16px;width:16px;border:0;background:transparent url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/40f56f5a736da4effeb790cedb8a52f0.svg) no-repeat}.no-svg .mejs-controls .mejs-button button{background-image:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/24a0227fbdd3acfd86ff03fc3fc6c8a4.png)}.mejs-controls .mejs-button button:focus{outline:dotted 1px #999}.mejs-container .mejs-controls .mejs-time{color:#fff;display:block;height:17px;width:auto;padding:10px 3px 0;overflow:hidden;text-align:center;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}.mejs-container .mejs-controls .mejs-time a{color:#fff;font-size:11px;line-height:12px;display:block;float:left;margin:1px 2px 0 0;width:auto}.mejs-controls .mejs-play button{background-position:0 0}.mejs-controls .mejs-pause button{background-position:0 -16px}.mejs-controls .mejs-stop button{background-position:-112px 0}.mejs-controls div.mejs-time-rail{direction:ltr;width:200px;padding-top:5px}.mejs-controls .mejs-time-rail span,.mejs-controls .mejs-time-rail a{display:block;position:absolute;width:180px;height:10px;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;cursor:pointer}.mejs-controls .mejs-time-rail .mejs-time-total{margin:5px;background:#333;background:rgba(50,50,50,.8);background:-webkit-gradient(linear,0 0,0 100%,from(rgba(30,30,30,.8)),to(rgba(60,60,60,.8)));background:-webkit-linear-gradient(top,rgba(30,30,30,.8),rgba(60,60,60,.8));background:-moz-linear-gradient(top,rgba(30,30,30,.8),rgba(60,60,60,.8));background:-o-linear-gradient(top,rgba(30,30,30,.8),rgba(60,60,60,.8));background:-ms-linear-gradient(top,rgba(30,30,30,.8),rgba(60,60,60,.8));background:linear-gradient(rgba(30,30,30,.8),rgba(60,60,60,.8))}.mejs-controls .mejs-time-rail .mejs-time-buffering{width:100%;background-image:-o-linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);background-image:-webkit-gradient(linear,0 100%,100% 0,color-stop(0.25,rgba(255,255,255,.15)),color-stop(0.25,transparent),color-stop(0.5,transparent),color-stop(0.5,rgba(255,255,255,.15)),color-stop(0.75,rgba(255,255,255,.15)),color-stop(0.75,transparent),to(transparent));background-image:-webkit-linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);background-image:-moz-linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);background-image:-ms-linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);background-image:linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);-webkit-background-size:15px 15px;-moz-background-size:15px 15px;-o-background-size:15px 15px;background-size:15px 15px;-webkit-animation:buffering-stripes 2s linear infinite;-moz-animation:buffering-stripes 2s linear infinite;-ms-animation:buffering-stripes 2s linear infinite;-o-animation:buffering-stripes 2s linear infinite;animation:buffering-stripes 2s linear infinite}@-webkit-keyframes buffering-stripes{from{background-position:0 0}to{background-position:30px 0}}@-moz-keyframes buffering-stripes{from{background-position:0 0}to{background-position:30px 0}}@-ms-keyframes buffering-stripes{from{background-position:0 0}to{background-position:30px 0}}@-o-keyframes buffering-stripes{from{background-position:0 0}to{background-position:30px 0}}@keyframes buffering-stripes{from{background-position:0 0}to{background-position:30px 0}}.mejs-controls .mejs-time-rail .mejs-time-loaded{background:#3caac8;background:rgba(60,170,200,.8);background:-webkit-gradient(linear,0 0,0 100%,from(rgba(44,124,145,.8)),to(rgba(78,183,212,.8)));background:-webkit-linear-gradient(top,rgba(44,124,145,.8),rgba(78,183,212,.8));background:-moz-linear-gradient(top,rgba(44,124,145,.8),rgba(78,183,212,.8));background:-o-linear-gradient(top,rgba(44,124,145,.8),rgba(78,183,212,.8));background:-ms-linear-gradient(top,rgba(44,124,145,.8),rgba(78,183,212,.8));background:linear-gradient(rgba(44,124,145,.8),rgba(78,183,212,.8));width:0}.mejs-controls .mejs-time-rail .mejs-time-current{background:#fff;background:rgba(255,255,255,.8);background:-webkit-gradient(linear,0 0,0 100%,from(rgba(255,255,255,.9)),to(rgba(200,200,200,.8)));background:-webkit-linear-gradient(top,rgba(255,255,255,.9),rgba(200,200,200,.8));background:-moz-linear-gradient(top,rgba(255,255,255,.9),rgba(200,200,200,.8));background:-o-linear-gradient(top,rgba(255,255,255,.9),rgba(200,200,200,.8));background:-ms-linear-gradient(top,rgba(255,255,255,.9),rgba(200,200,200,.8));background:linear-gradient(rgba(255,255,255,.9),rgba(200,200,200,.8));width:0}.mejs-controls .mejs-time-rail .mejs-time-handle{display:none;position:absolute;margin:0;width:10px;background:#fff;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;cursor:pointer;border:solid 2px #333;top:-2px;text-align:center}.mejs-controls .mejs-time-rail .mejs-time-float{position:absolute;display:none;background:#eee;width:36px;height:17px;border:solid 1px #333;top:-26px;margin-left:-18px;text-align:center;color:#111}.mejs-controls .mejs-time-rail .mejs-time-float-current{margin:2px;width:30px;display:block;text-align:center;left:0}.mejs-controls .mejs-time-rail .mejs-time-float-corner{position:absolute;display:block;width:0;height:0;line-height:0;border:solid 5px #eee;border-color:#eee transparent transparent;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;top:15px;left:13px}.mejs-long-video .mejs-controls .mejs-time-rail .mejs-time-float{width:48px}.mejs-long-video .mejs-controls .mejs-time-rail .mejs-time-float-current{width:44px}.mejs-long-video .mejs-controls .mejs-time-rail .mejs-time-float-corner{left:18px}.mejs-controls .mejs-fullscreen-button button{background-position:-32px 0}.mejs-controls .mejs-unfullscreen button{background-position:-32px -16px}.mejs-controls .mejs-volume-button{}.mejs-controls .mejs-mute button{background-position:-16px -16px}.mejs-controls .mejs-unmute button{background-position:-16px 0}.mejs-controls .mejs-volume-button{position:relative}.mejs-controls .mejs-volume-button .mejs-volume-slider{height:115px;width:25px;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/703c659e4bf563a05c6338a1727e006c.png);background:rgba(50,50,50,.7);-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;top:-115px;left:0;z-index:1;position:absolute;margin:0}.mejs-controls .mejs-volume-button:hover{-webkit-border-radius:0 0 4px 4px;-moz-border-radius:0 0 4px 4px;border-radius:0 0 4px 4px}.mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-total{position:absolute;left:11px;top:8px;width:2px;height:100px;background:#ddd;background:rgba(255,255,255,.5);margin:0}.mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-current{position:absolute;left:11px;top:8px;width:2px;height:100px;background:#ddd;background:rgba(255,255,255,.9);margin:0}.mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-handle{position:absolute;left:4px;top:-3px;width:16px;height:6px;background:#ddd;background:rgba(255,255,255,.9);cursor:N-resize;-webkit-border-radius:1px;-moz-border-radius:1px;border-radius:1px;margin:0}.mejs-controls a.mejs-horizontal-volume-slider{height:26px;width:56px;position:relative;display:block;float:left;vertical-align:middle}.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total{position:absolute;left:0;top:11px;width:50px;height:8px;margin:0;padding:0;font-size:1px;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;background:#333;background:rgba(50,50,50,.8);background:-webkit-gradient(linear,0 0,0 100%,from(rgba(30,30,30,.8)),to(rgba(60,60,60,.8)));background:-webkit-linear-gradient(top,rgba(30,30,30,.8),rgba(60,60,60,.8));background:-moz-linear-gradient(top,rgba(30,30,30,.8),rgba(60,60,60,.8));background:-o-linear-gradient(top,rgba(30,30,30,.8),rgba(60,60,60,.8));background:-ms-linear-gradient(top,rgba(30,30,30,.8),rgba(60,60,60,.8));background:linear-gradient(rgba(30,30,30,.8),rgba(60,60,60,.8))}.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current{position:absolute;left:0;top:11px;width:50px;height:8px;margin:0;padding:0;font-size:1px;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;background:#fff;background:rgba(255,255,255,.8);background:-webkit-gradient(linear,0 0,0 100%,from(rgba(255,255,255,.9)),to(rgba(200,200,200,.8)));background:-webkit-linear-gradient(top,rgba(255,255,255,.9),rgba(200,200,200,.8));background:-moz-linear-gradient(top,rgba(255,255,255,.9),rgba(200,200,200,.8));background:-o-linear-gradient(top,rgba(255,255,255,.9),rgba(200,200,200,.8));background:-ms-linear-gradient(top,rgba(255,255,255,.9),rgba(200,200,200,.8));background:linear-gradient(rgba(255,255,255,.9),rgba(200,200,200,.8))}.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-handle{display:none}.mejs-controls .mejs-captions-button{position:relative}.mejs-controls .mejs-captions-button button{background-position:-48px 0}.mejs-controls .mejs-captions-button .mejs-captions-selector{position:absolute;bottom:26px;right:-51px;width:85px;height:100px;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/703c659e4bf563a05c6338a1727e006c.png);background:rgba(50,50,50,.7);border:solid 1px transparent;padding:10px 10px 0;overflow:hidden;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.mejs-controls .mejs-captions-button .mejs-captions-selector ul{margin:0;padding:0;display:block;list-style-type:none!important;overflow:hidden}.mejs-controls .mejs-captions-button .mejs-captions-selector ul li{margin:0 0 6px;padding:0;list-style-type:none!important;display:block;color:#fff;overflow:hidden}.mejs-controls .mejs-captions-button .mejs-captions-selector ul li input{clear:both;float:left;margin:3px 3px 0 5px}.mejs-controls .mejs-captions-button .mejs-captions-selector ul li label{width:55px;float:left;padding:4px 0 0;line-height:15px;font-family:Helvetica,Arial,serif;font-size:10px}.mejs-controls .mejs-captions-button .mejs-captions-translations{font-size:10px;margin:0 0 5px}.mejs-chapters{position:absolute;top:0;left:0;border-right:solid 1px #fff;width:10000px;z-index:1}.mejs-chapters .mejs-chapter{position:absolute;float:left;background:#222;background:rgba(0,0,0,.7);background:-webkit-gradient(linear,0 0,0 100%,from(rgba(50,50,50,.7)),to(rgba(0,0,0,.7)));background:-webkit-linear-gradient(top,rgba(50,50,50,.7),rgba(0,0,0,.7));background:-moz-linear-gradient(top,rgba(50,50,50,.7),rgba(0,0,0,.7));background:-o-linear-gradient(top,rgba(50,50,50,.7),rgba(0,0,0,.7));background:-ms-linear-gradient(top,rgba(50,50,50,.7),rgba(0,0,0,.7));background:linear-gradient(rgba(50,50,50,.7),rgba(0,0,0,.7));filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, startColorstr=#323232, endColorstr=#000000);overflow:hidden;border:0}.mejs-chapters .mejs-chapter .mejs-chapter-block{font-size:11px;color:#fff;padding:5px;display:block;border-right:solid 1px #333;border-bottom:solid 1px #333;cursor:pointer}.mejs-chapters .mejs-chapter .mejs-chapter-block-last{border-right:0}.mejs-chapters .mejs-chapter .mejs-chapter-block:hover{background:#666;background:rgba(102,102,102,.7);background:-webkit-gradient(linear,0 0,0 100%,from(rgba(102,102,102,.7)),to(rgba(50,50,50,.6)));background:-webkit-linear-gradient(top,rgba(102,102,102,.7),rgba(50,50,50,.6));background:-moz-linear-gradient(top,rgba(102,102,102,.7),rgba(50,50,50,.6));background:-o-linear-gradient(top,rgba(102,102,102,.7),rgba(50,50,50,.6));background:-ms-linear-gradient(top,rgba(102,102,102,.7),rgba(50,50,50,.6));background:linear-gradient(rgba(102,102,102,.7),rgba(50,50,50,.6));filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, startColorstr=#666666, endColorstr=#323232)}.mejs-chapters .mejs-chapter .mejs-chapter-block .ch-title{font-size:12px;font-weight:700;display:block;white-space:nowrap;text-overflow:ellipsis;margin:0 0 3px;line-height:12px}.mejs-chapters .mejs-chapter .mejs-chapter-block .ch-timespan{font-size:12px;line-height:12px;margin:3px 0 4px;display:block;white-space:nowrap;text-overflow:ellipsis}.mejs-captions-layer{position:absolute;bottom:0;left:0;text-align:center;line-height:20px;font-size:16px;color:#fff}.mejs-captions-layer a{color:#fff;text-decoration:underline}.mejs-captions-layer[lang=ar]{font-size:20px;font-weight:400}.mejs-captions-position{position:absolute;width:100%;bottom:15px;left:0}.mejs-captions-position-hover{bottom:35px}.mejs-captions-text,.mejs__captions-text *{padding:0;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/703c659e4bf563a05c6338a1727e006c.png);background:rgba(20,20,20,.5);white-space:pre-wrap;-webkit-box-shadow:5px 0 0 rgba(20,20,20,.5),-5px 0 0 rgba(20,20,20,.5);box-shadow:5px 0 0 rgba(20,20,20,.5),-5px 0 0 rgba(20,20,20,.5)}.me-cannotplay{}.me-cannotplay a{color:#fff;font-weight:700}.me-cannotplay span{padding:15px;display:block}.mejs-controls .mejs-loop-off button{background-position:-64px -16px}.mejs-controls .mejs-loop-on button{background-position:-64px 0}.mejs-controls .mejs-backlight-off button{background-position:-80px -16px}.mejs-controls .mejs-backlight-on button{background-position:-80px 0}.mejs-controls .mejs-picturecontrols-button{background-position:-96px 0}.mejs-contextmenu{position:absolute;width:150px;padding:10px;border-radius:4px;top:0;left:0;background:#fff;border:solid 1px #999;z-index:1001}.mejs-contextmenu .mejs-contextmenu-separator{height:1px;font-size:0;margin:5px 6px;background:#333}.mejs-contextmenu .mejs-contextmenu-item{font-family:Helvetica,Arial,serif;font-size:12px;padding:4px 6px;cursor:pointer;color:#333}.mejs-contextmenu .mejs-contextmenu-item:hover{background:#2C7C91;color:#fff}.mejs-controls .mejs-sourcechooser-button{position:relative}.mejs-controls .mejs-sourcechooser-button button{background-position:-128px 0}.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector{position:absolute;bottom:26px;right:-10px;width:130px;height:100px;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/703c659e4bf563a05c6338a1727e006c.png);background:rgba(50,50,50,.7);border:solid 1px transparent;padding:10px;overflow:hidden;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector ul{margin:0;padding:0;display:block;list-style-type:none!important;overflow:hidden}.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector ul li{margin:0 0 6px;padding:0;list-style-type:none!important;display:block;color:#fff;overflow:hidden}.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector ul li input{clear:both;float:left;margin:3px 3px 0 5px}.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector ul li label{width:100px;float:left;padding:4px 0 0;line-height:15px;font-family:Helvetica,Arial,serif;font-size:10px}.mejs-postroll-layer{position:absolute;bottom:0;left:0;width:100%;height:100%;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/703c659e4bf563a05c6338a1727e006c.png);background:rgba(50,50,50,.7);z-index:1000;overflow:hidden}.mejs-postroll-layer-content{width:100%;height:100%}.mejs-postroll-close{position:absolute;right:0;top:0;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/703c659e4bf563a05c6338a1727e006c.png);background:rgba(50,50,50,.7);color:#fff;padding:4px;z-index:100;cursor:pointer}div.mejs-speed-button{width:46px!important;position:relative}.mejs-controls .mejs-button.mejs-speed-button button{background:transparent;width:36px;font-size:11px;line-height:normal;color:#fff}.mejs-controls .mejs-speed-button .mejs-speed-selector{position:absolute;top:-100px;left:-10px;width:60px;height:100px;background:url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/703c659e4bf563a05c6338a1727e006c.png);background:rgba(50,50,50,.7);border:solid 1px transparent;padding:0;overflow:hidden;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.mejs-controls .mejs-speed-button .mejs-speed-selector ul li label.mejs-speed-selected{color:rgba(33,248,248,1)}.mejs-controls .mejs-speed-button .mejs-speed-selector ul{margin:0;padding:0;display:block;list-style-type:none!important;overflow:hidden}.mejs-controls .mejs-speed-button .mejs-speed-selector ul li{margin:0 0 6px;padding:0 10px;list-style-type:none!important;display:block;color:#fff;overflow:hidden}.mejs-controls .mejs-speed-button .mejs-speed-selector ul li input{clear:both;float:left;margin:3px 3px 0 5px}.mejs-controls .mejs-speed-button .mejs-speed-selector ul li label{width:60px;float:left;padding:4px 0 0;line-height:15px;font-family:Helvetica,Arial,serif;font-size:11px;color:#fff;margin-left:5px;cursor:pointer}.mejs-controls .mejs-speed-button .mejs-speed-selector ul li:hover{background-color:#c8c8c8!important;background-color:rgba(255,255,255,.4)!important}.mejs-controls .mejs-button.mejs-jump-forward-button{background:transparent url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/15e1ac8cbacc2efdf1ac2677de48a253.png) no-repeat 3px 3px}.mejs-controls .mejs-button.mejs-jump-forward-button button{background:transparent;font-size:9px;line-height:normal;color:#fff}.mejs-controls .mejs-button.mejs-skip-back-button{background:transparent url(https://du11hjcvx0uqb.cloudfront.net/br/dist/webpack-production/cd6dc830eb45b3a5a96bbc936ff54846.png) no-repeat 3px 3px}.mejs-controls .mejs-button.mejs-skip-back-button button{background:transparent;font-size:9px;line-height:normal;color:#fff}</style><script type="text/javascript" charset="utf-8" async="" src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/12.chunk-abd07eeaa0.js.download"></script><script type="text/javascript" charset="utf-8" async="" src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/33.chunk-eefe50ba61.js.download"></script><link rel="stylesheet" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/KeyboardShortcuts-f4493af988.css" data-loaded-by-brandablecss="true"><script type="text/javascript" charset="utf-8" async="" src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/canvas-rce-old-async-chunk.chunk-6943a9f260.js.download"></script><link rel="stylesheet" href="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/Syllabus-460196264f.css" data-loaded-by-brandablecss="true"><style type="text/css" data-glamor=""></style></head>
+
+<body class="with-left-side course-menu-expanded with-right-side syllabus primary-nav-expanded full-width context-course_95202 webkit chrome no-touch">
+
+<noscript>
+  <div role="alert" class="ic-flash-static ic-flash-error">
+    <div class="ic-flash__icon" aria-hidden="true">
+      <i class="icon-warning"></i>
+    </div>
+    <h1>You need to have JavaScript enabled in order to access this site.</h1>
+  </div>
+</noscript>
+
+
+
+
+
+<ul id="flash_message_holder"></ul>
+<div id="flash_screenreader_holder" role="alert" aria-live="assertive" aria-relevant="additions" class="screenreader-only" aria-atomic="false"></div>
+
+<div id="application" class="ic-app">
+  
+  <header id="header" class="ic-app-header no-print ">
+    <a href="https://q.utoronto.ca/courses/95202#content" id="skip_navigation_link">Skip To Content</a>
+      <div role="region" class="ic-app-header__main-navigation" aria-label="Global Navigation">
+        <div class="ic-app-header__logomark-container">
+          <a href="https://q.utoronto.ca/" class="ic-app-header__logomark">
+            <span class="screenreader-only">Dashboard</span>
+          </a>
+        </div>
+        <ul id="menu" class="ic-app-header__menu-list">
+            <li class="menu-item ic-app-header__menu-list-item ">
+              <a id="global_nav_profile_link" role="button" href="https://q.utoronto.ca/profile" class="ic-app-header__menu-list-link">
+                <div class="menu-item-icon-container" aria-hidden="true">
+                  <div class="ic-avatar ">
+                    <img src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/avatar-50.png" alt="Haider Sajjad">
+                  </div>
+                </div>
+                <div class="menu-item__text">
+                  Account
+                </div>
+              </a>
+            </li>
+          <li class="ic-app-header__menu-list-item ">
+            <a id="global_nav_dashboard_link" href="https://q.utoronto.ca/" class="ic-app-header__menu-list-link">
+              <div class="menu-item-icon-container" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--dashboard" version="1.1" x="0" y="0" viewBox="0 0 280 200" enable-background="new 0 0 280 200" xml:space="preserve"><path d="M273.09,180.75H197.47V164.47h62.62A122.16,122.16,0,1,0,17.85,142a124,124,0,0,0,2,22.51H90.18v16.29H6.89l-1.5-6.22A138.51,138.51,0,0,1,1.57,142C1.57,65.64,63.67,3.53,140,3.53S278.43,65.64,278.43,142a137.67,137.67,0,0,1-3.84,32.57ZM66.49,87.63,50.24,71.38,61.75,59.86,78,76.12Zm147,0L202,76.12l16.25-16.25,11.51,11.51ZM131.85,53.82v-23h16.29v23Zm15.63,142.3a31.71,31.71,0,0,1-28-16.81c-6.4-12.08-15.73-72.29-17.54-84.25a8.15,8.15,0,0,1,13.58-7.2c8.88,8.21,53.48,49.72,59.88,61.81a31.61,31.61,0,0,1-27.9,46.45ZM121.81,116.2c4.17,24.56,9.23,50.21,12,55.49A15.35,15.35,0,1,0,161,157.3C158.18,152,139.79,133.44,121.81,116.2Z"></path></svg>
+
+              </div>
+              <div class="menu-item__text">Dashboard</div>
+            </a>
+          </li>
+          <li class="menu-item ic-app-header__menu-list-item ic-app-header__menu-list-item--active">
+            <a id="global_nav_courses_link" role="button" href="https://q.utoronto.ca/courses" class="ic-app-header__menu-list-link">
+              <div class="menu-item-icon-container" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--courses" version="1.1" x="0" y="0" viewBox="0 0 280 259" enable-background="new 0 0 280 259" xml:space="preserve"><path d="M73.31,198c-11.93,0-22.22,8-24,18.73a26.67,26.67,0,0,0-.3,3.63v.3a22,22,0,0,0,5.44,14.65,22.47,22.47,0,0,0,17.22,8H200V228.19h-134V213.08H200V198Zm21-105.74h90.64V62H94.3ZM79.19,107.34V46.92H200v60.42Zm7.55,30.21V122.45H192.49v15.11ZM71.65,16.71A22.72,22.72,0,0,0,49,39.36V190.88a41.12,41.12,0,0,1,24.32-8h157V16.71ZM33.88,39.36A37.78,37.78,0,0,1,71.65,1.6H245.36V198H215.15v45.32h22.66V258.4H71.65a37.85,37.85,0,0,1-37.76-37.76Z"></path></svg>
+
+              </div>
+              <div class="menu-item__text">
+                Courses
+              </div>
+            </a>
+          </li>
+          <li class="menu-item ic-app-header__menu-list-item ">
+            <a id="global_nav_calendar_link" href="https://q.utoronto.ca/calendar" class="ic-app-header__menu-list-link">
+              <div class="menu-item-icon-container" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--calendar" version="1.1" x="0" y="0" viewBox="0 0 280 280" enable-background="new 0 0 280 280" xml:space="preserve"><path d="M197.07,213.38h16.31V197.07H197.07Zm-16.31,16.31V180.76h48.92v48.92Zm-48.92-16.31h16.31V197.07H131.85Zm-16.31,16.31V180.76h48.92v48.92ZM66.62,213.38H82.93V197.07H66.62ZM50.32,229.68V180.76H99.24v48.92Zm146.75-81.53h16.31V131.85H197.07Zm-16.31,16.31V115.54h48.92v48.92Zm-48.92-16.31h16.31V131.85H131.85Zm-16.31,16.31V115.54h48.92v48.92ZM66.62,148.15H82.93V131.85H66.62ZM50.32,164.46V115.54H99.24v48.92ZM34,262.29H246V82.93H34ZM246,66.62V42.16A8.17,8.17,0,0,0,237.84,34H213.38v8.15a8.15,8.15,0,1,1-16.31,0V34H82.93v8.15a8.15,8.15,0,0,1-16.31,0V34H42.16A8.17,8.17,0,0,0,34,42.16V66.62Zm-8.15-48.92a24.49,24.49,0,0,1,24.46,24.46V278.6H17.71V42.16A24.49,24.49,0,0,1,42.16,17.71H66.62V9.55a8.15,8.15,0,0,1,16.31,0v8.15H197.07V9.55a8.15,8.15,0,1,1,16.31,0v8.15Z"></path></svg>
+
+              </div>
+              <div class="menu-item__text">
+                Calendar
+              </div>
+            </a>
+          </li>
+          <li class="menu-item ic-app-header__menu-list-item ">
+            <a id="global_nav_conversations_link" href="https://q.utoronto.ca/conversations" class="ic-app-header__menu-list-link">
+              <div class="menu-item-icon-container">
+                <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--inbox" version="1.1" x="0" y="0" viewBox="0 0 280 280" enable-background="new 0 0 280 280" xml:space="preserve"><path d="M91.72,120.75h96.56V104.65H91.72Zm0,48.28h80.47V152.94H91.72Zm0-96.56h80.47V56.37H91.72Zm160.94,34.88H228.52V10.78h-177v96.56H27.34A24.17,24.17,0,0,0,3.2,131.48V244.14a24.17,24.17,0,0,0,24.14,24.14H252.66a24.17,24.17,0,0,0,24.14-24.14V131.48A24.17,24.17,0,0,0,252.66,107.34Zm0,16.09a8.06,8.06,0,0,1,8,8v51.77l-32.19,19.31V123.44ZM67.58,203.91v-177H212.42v177ZM27.34,123.44H51.48v79.13L19.29,183.26V131.48A8.06,8.06,0,0,1,27.34,123.44ZM252.66,252.19H27.34a8.06,8.06,0,0,1-8-8V202l30,18H230.75l30-18v42.12A8.06,8.06,0,0,1,252.66,252.19Z"></path></svg>
+</span>
+                <span class="menu-item__badge" style=""><span class="fdaJD_bGBk">85 unread messages</span><span aria-hidden="true">85</span></span>
+              </div>
+              <div class="menu-item__text">
+                Inbox
+              </div>
+            </a>
+          </li>
+            
+
+      <li id="context_external_tool_2015_menu_item" class="menu-item ic-app-header__menu-list-item">
+        <a class="ic-app-header__menu-list-link" href="https://q.utoronto.ca/accounts/1/external_tools/2015?launch_type=global_navigation">
+            <img src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/Course_Evals.svg" alt="">
+          <div class="menu-item__text">
+            Course Evals
+          </div>
+        </a>
+      </li>
+
+          <li class="ic-app-header__menu-list-item">
+           <a id="global_nav_help_link" role="button" class="ic-app-header__menu-list-link" data-track-category="help system" data-track-label="help button" href="http://help.instructure.com/">
+              <div class="menu-item-icon-container" role="presentation">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg menu-item__icon svg-icon-help" version="1.1" x="0" y="0" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve" fill="currentColor"><path d="M100,127.88A11.15,11.15,0,1,0,111.16,139,11.16,11.16,0,0,0,100,127.88Zm8.82-88.08a33.19,33.19,0,0,1,23.5,23.5,33.54,33.54,0,0,1-24,41.23,3.4,3.4,0,0,0-2.74,3.15v9.06H94.42v-9.06a14.57,14.57,0,0,1,11.13-14,22.43,22.43,0,0,0,13.66-10.27,22.73,22.73,0,0,0,2.31-17.37A21.92,21.92,0,0,0,106,50.59a22.67,22.67,0,0,0-19.68,3.88,22.18,22.18,0,0,0-8.65,17.64H66.54a33.25,33.25,0,0,1,13-26.47A33.72,33.72,0,0,1,108.82,39.8ZM100,5.2A94.8,94.8,0,1,0,194.8,100,94.91,94.91,0,0,0,100,5.2m0,178.45A83.65,83.65,0,1,1,183.65,100,83.73,83.73,0,0,1,100,183.65" transform="translate(-5.2 -5.2)"></path></svg>
+
+              </div>
+              <div class="menu-item__text">
+                Help
+              </div>
+</a>          </li>
+        </ul>
+      </div>
+      <div class="ic-app-header__secondary-navigation">
+        <ul class="ic-app-header__menu-list">
+          <li class="menu-item ic-app-header__menu-list-item">
+            <button id="primaryNavToggle" class="ic-app-header__menu-list-link ic-app-header__menu-list-link--nav-toggle" aria-label="Minimize global navigation" title="Minimize global navigation">
+              <div class="menu-item-icon-container" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--navtoggle" version="1.1" x="0" y="0" width="40" height="32" viewBox="0 0 40 32" xml:space="preserve">
+  <path d="M39.5,30.28V2.48H37.18v27.8Zm-4.93-13.9L22.17,4,20.53,5.61l9.61,9.61H.5v2.31H30.14l-9.61,9.61,1.64,1.64Z"></path>
+</svg>
+
+              </div>
+            </button>
+          </li>
+        </ul>
+      </div>
+    <div id="global_nav_tray_container"></div>
+  </header>
+
+
+  <div id="instructure_ajax_error_box">
+    <div style="text-align: right; background-color: #fff;"><a href="https://q.utoronto.ca/courses/95202#" class="close_instructure_ajax_error_box_link">Close</a></div>
+    <iframe id="instructure_ajax_error_result" src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/saved_resource.html" style="border: 0;" title="Error"></iframe>
+  </div>
+
+  
+
+  <div id="wrapper" class="ic-Layout-wrapper">
+      <div class="ic-app-nav-toggle-and-crumbs no-print">
+          <button type="button" id="courseMenuToggle" class="Button Button--link ic-app-course-nav-toggle" aria-live="polite" aria-label="Hide Courses Navigation Menu" title="Hide Courses Navigation Menu">
+            <i class="icon-hamburger" aria-hidden="true"></i>
+          </button>
+          <div class="ic-app-crumbs">
+        <nav id="breadcrumbs" role="navigation" aria-label="breadcrumbs"><ul><li class="home"><a href="https://q.utoronto.ca/"><span class="ellipsible">      <i class="icon-home" title="My Dashboard">
+        <span class="screenreader-only">My Dashboard</span>
+      </i>
+</span></a></li><li id="crumb_course_95202"><a href="https://q.utoronto.ca/courses/95202"><span class="ellipsible">CSC343H1 Y LEC5101</span></a></li><li><span class="ellipsible">Syllabus</span></li></ul></nav>
+        </div>
+          <div class="TutorialToggleHolder"></div>
+      </div>
+    <div id="main" class="ic-Layout-columns">
+        <div class="ic-Layout-watermark"></div>
+        <div id="left-side" class="ic-app-course-menu list-view" style="display: block">
+              <span id="section-tabs-header-subtitle" class="ellipsis">2019 Summer</span>
+            <nav role="navigation" aria-label="Courses Navigation Menu"><ul id="section-tabs"><li class="section"><a href="https://q.utoronto.ca/courses/95202" title="Home" class="home" tabindex="0">Home</a></li><li class="section"><a href="https://q.utoronto.ca/courses/95202/announcements" title="Announcements" class="announcements" tabindex="0">Announcements</a></li><li class="section"><a href="https://q.utoronto.ca/courses/95202/external_tools/2245" title="Lectures" class="context_external_tool_2245" tabindex="0">Lectures</a></li><li class="section"><a href="https://q.utoronto.ca/courses/95202/external_tools/2244" title="Lecture Preps (PCRS)" class="context_external_tool_2244" tabindex="0">Lecture Preps (PCRS)</a></li><li class="section"><a href="https://q.utoronto.ca/courses/95202/external_tools/2243" title="Piazza" class="context_external_tool_2243" tabindex="0">Piazza</a></li></ul></nav>
+        </div>
+      <div id="not_right_side" class="ic-app-main-content">
+        <div id="content-wrapper" class="ic-Layout-contentWrapper">
+          
+          <div id="content" class="ic-Layout-contentMain" role="main">
+            
+<h1 class="screenreader-only">CSC343H1 Y LEC5101 20195:Introduction to Databases</h1>
+
+
+
+
+<div id="course_home_content">
+    
+<div class="ic-Action-header">
+  <div class="ic-Action-header__Primary">
+    <h2 class="ic-Action-header__Heading">CSC343H1 Y LEC5101 20195:Introduction to Databases</h2>
+  </div>
+  <div class="ic-Action-header__Secondary">
+    <a href="https://q.utoronto.ca/courses/95202#" class="jump_to_today_link">Jump to Today</a>
+  </div>
+</div>
+
+<div id="course_syllabus" style="margin-bottom: 10px;" class="user_content enhanced">
+  <p style="text-align: justify;"><span style="font-size: 1rem;">To contact the course instructor regarding personal issues related to csc343, please use this email address:</span></p>
+<p style="text-align: justify;"><span style="font-size: 1rem;"> </span><a style="font-size: 1rem;" href="mailto:csc343-2019-05@cs.toronto.edu">csc343-2019-05@cs.toronto.edu</a></p>
+<p style="text-align: justify;">For&nbsp;<span>general course-related questions</span>, please use Piazza or visit us during office hours.</p>
+<hr>
+<p style="text-align: justify;"><span>Welcome to CSC343H! This course provides an Introduction to Databases, and prepares you for later study in the implementation of Database Management Systems.</span></p>
+<p style="text-align: justify;"><span style="font-size: 1rem;">The material posted on Quercus is required reading. It contains important information: assignment handouts, the policy on missed work, links to the online discussion forum (Piazza), the announcements page, and more. You are responsible for all announcements made in lecture and on Quercus.</span></p>
+<hr>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Arts and Science students: If you don't have the course prerequisites listed in the<span>&nbsp;</span><a href="https://fas.calendar.utoronto.ca/course/csc343h1">calendar entry</a>, contact the instructor immediately to see whether you may remain in the course. Include your name, student number, full academic history from Acorn, and why you feel you are well prepared to take the course. If we don't issue a waiver, the registrar will remove you from the course.</p>
+<p>Engineering students: If you don't have the course prerequisites listed in your calendar, your registrar may not allow you to take the course without my permission. If so, email me with your name, student number, full academic history from Acorn, and why you feel you are well prepared to take the course.</p>
+<hr>
+<h2 id="instructors">Instructor</h2>
+<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p style="text-align: justify;"><span>For electronic communication, please use email from your UofT address for personal issues and the discussion forum to ask general course-related questions. <br></span><span>For email, include “CSC343” in the subject line and sign your full name <strong>and </strong>UTORid. </span></p>
+<p style="text-align: justify;"><span>Mark is the Course Coordinator, which means that he deals with all administrative issues (ex. missed work, problems with your grades, the course website, and TA issues). </span></p>
+</div>
+</div>
+</div>
+</div>
+<table style="border-collapse: collapse; margin-left: auto; margin-right: auto; width: 59.2475%; height: 200px;" border="1" cellspacing="10" cellpadding="10">
+<tbody style="text-align: center;">
+<tr style="height: 84px;">
+<td style="width: 14.5709%; height: 57px;"><strong>Instructor</strong></td>
+<td style="text-align: center; width: 36.6267%; height: 57px;">
+<p><strong>Mark Kazakevich</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 14.5709%; height: 48px;"><strong>Office Hours</strong></td>
+<td style="text-align: center; width: 36.6267%; height: 48px;">Wednesdays 5-6pm in BA 2283</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 14.5709%; height: 48px;"><strong>Email</strong></td>
+<td style="width: 36.6267%; height: 48px;">
+<p style="text-align: center;"><a style="font-size: 1rem;" href="mailto:csc343-2019-05@cs.toronto.edu">csc343-2019-05@cs.toronto.edu</a></p>
+</td>
+</tr>
+<tr style="height: 108px;">
+<td style="width: 14.5709%; height: 47px;"><strong>Sections</strong></td>
+<td style="width: 36.6267%; height: 47px;">
+<p>L5101, R6-9 in BA 1130</p>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="markingscheme">Marking Scheme Summary</h2>
+<table style="border-collapse: collapse; margin-left: auto; margin-right: auto; width: 99.7418%;" border="1" cellspacing="10" cellpadding="10">
+<tbody>
+<tr>
+<td style="width: 12.1447%;">
+<p>Lecture Prep</p>
+</td>
+<td style="width: 4.78036%;">
+<p>10%</p>
+</td>
+<td style="width: 55.1044%;">
+<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p>Each worth 1%. Before lecture for weeks 2-11.</p>
+</div>
+</div>
+</div>
+</div>
+</td>
+<td style="width: 27.8414%;">
+<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p>Due Thursdays before noon (12pm)</p>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 12.1447%;">Assignments (3)</td>
+<td style="width: 4.78036%;">30%</td>
+<td style="width: 55.1044%;">Each worth 10%</td>
+<td style="width: 27.8414%;">June 8, July 15, August 5</td>
+</tr>
+<tr>
+<td style="width: 12.1447%;">Midterm Test</td>
+<td style="width: 4.78036%;">15%</td>
+<td style="width: 55.1044%;">During lecture time. Topics and location TBA.</td>
+<td style="width: 27.8414%;">Thursday, July 4</td>
+</tr>
+<tr>
+<td style="width: 12.1447%;">Final Exam</td>
+<td style="width: 4.78036%;">45%</td>
+<td style="width: 55.1044%;">You must get 40% or above on the final exam to pass the course; otherwise, your final course grade will be no higher than 47%.</td>
+<td style="width: 27.8414%;">August, TBA</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="active-classes-and-preparation-for-them">Active Classes, and Preparation for Them</h2>
+<p>During class time in this course, we will present material and demonstrate problem solving for part of the time. There will also regularly be activities that you participate in. Be prepared to get your gears turning in class! There is good evidence, and our experience also shows, that active learning works better than passively listening to a lecture. We also think it's a lot more fun. We will use <strong>all three hours</strong> of our meeting time for these kinds of classes, led by your instructor.</p>
+<p>During some in-class activities, students will see and discuss each other's solutions to problems. This is your official notice (per the University's privacy regulations) that your personal information will be used in this way. If you wish to opt out of these particular activities, please notify your professor at the beginning of the term. Opting out will not directly impact your mark in the course, but you will lose a valuable learning opportunity.</p>
+<p><strong>Lecture preps: </strong>To prepare for these active classes, you will be doing weekly activities outside of class. These will involve learning some material on your own, through readings or videos, and practising things we've learned in class. They will always culminate in some small exercises that you hand in.<span>&nbsp;</span><strong>These weekly activities are not intended to be greatly time consuming.</strong></p>
+<hr>
+<h2 id="resources">Resources</h2>
+<p>These two resources are suggested to support your learning in the course:</p>
+<ul>
+<li>
+<p>The textbook "A First Course in Database Systems" by Jeffrey D. Ullman and Jennifer Widom, 2008 (3rd Edition), available online from the<span>&nbsp;</span><a href="http://www.mypearsonstore.com/bookstore/product.asp?isbn=013600637X&amp;xid=PSED" class="external" target="_blank" rel="noreferrer noopener"><span><span>publisher</span><span class="screenreader-only">&nbsp;(Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>,<span>&nbsp;</span><a href="http://www.chapters.indigo.ca/home/search/?keywords=A%20First%20Course%20in%20Database%20Systems&amp;pageSize=12" class="external" target="_blank" rel="noreferrer noopener"><span><span>Chapters</span><span class="screenreader-only">&nbsp;(Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>, or<span>&nbsp;</span><a href="http://www.amazon.ca/s/ref=nb_sb_ss_i_0_34?url=search-alias%3Daps&amp;field-keywords=a+first+course+in+database+systems&amp;x=0&amp;y=0&amp;sprefix=a+first+course+in+database+systems" class="external" target="_blank" rel="noreferrer noopener"><span><span>Amazon</span><span class="screenreader-only">&nbsp;(Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>. It is also available on two-hour loan at the Engineering Library in the Sandford Fleming Building.&nbsp; It may or may not be available at the UofT Bookstore at this time.</p>
+</li>
+<li>
+<p>The<span>&nbsp;</span><a href="https://class.stanford.edu/courses/DB/2014/SelfPaced/about" class="external" target="_blank" rel="noreferrer noopener"><span><span>online mini-courses</span><span class="screenreader-only">&nbsp;(Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a><span>&nbsp;</span>by Jennifer Widom at Stanford University.</p>
+</li>
+</ul>
+<hr>
+<h2 id="working-with-a-partner">Working with a Partner</h2>
+<p>You have the option of partnering with one other CSC343 student for your assignments, and we encourage you to do so. You may choose your own partner, and it need not be the same person for each assignment. Once you begin working on an assignment, you may not dissolve your partnership without my permission. Both partners will receive the same mark for joint assignments.</p>
+<p>Working with a partner has the potential to lighten your workload and enhance your learning or to increase your workload and impair your learning, depending on how you work together. Remember that you are responsible for learning the course material underlying all parts of the assignments. You will have the most success if you truly work together.</p>
+<hr>
+<h2 id="assignment-policies">Assignment Policies</h2>
+<p>Assignments are due on<span>&nbsp;</span><strong>Mondays before 10:00 pm</strong><span>&nbsp;</span>sharp. Assignments must be submitted electronically, using the<span>&nbsp;</span><a href="https://markus.cdf.toronto.edu/csc343-2019-05" class="external" target="_blank" rel="noreferrer noopener"><span><span>MarkUs online system</span><span class="screenreader-only">&nbsp;(Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>. Log in with your CS Teaching Labs username and password. Be sure to confirm that you have submitted all the required files and the correct version of each; we cannot accept missing files or a different version of an already-submitted file after the due date. Code that you submit to us for grading must work on the CS Teaching Labs machines in order to earn credit.</p>
+<hr>
+<h2 id="late-assignments">Late Assignments</h2>
+<p>You can turn in your assignments up to 1 day late at a cost of 10% for each 12 hour period you are late. If you are struggling with an exercise, talk to the instructor or the TA’s for help before the deadline.</p>
+<p>Since your work is submitted electronically and will often be tested using an automated testing program, you must follow the submission instructions exactly. If you do not, you will most likely lose substantial marks on the assignment. Check your submission carefully.</p>
+<p><strong>No late lecture preps will be accepted.</strong></p>
+<h2 id="special-consideration">Special Consideration</h2>
+<p>If you are unable to complete homework or if you miss a test due to major illness or other circumstances completely outside of your control, please email me immediately if you want to receive special consideration.</p>
+<h2 id="academic-integrity">Academic Integrity</h2>
+<p>The work you submit must be your own. It is an academic offence to copy someone else's work. This includes their code, their words, and even their ideas. Whether you copy or let someone else copy, it is an offence. Academic offences are taken very seriously.</p>
+<p>At the same time, we want you to benefit from working with other students. Obviously, work done with your partner is a joint effort. You are also welcome to work appropriately with students other than your partner. It is appropriate to discuss course material and technology related to assignments, and we encourage you to do so. For example, you may work through examples that help you understand course material or a new technology, or help each other configure your system to run a supporting piece of software. You may also discuss assignment requirements.</p>
+<p>However, other than between partners,<span>&nbsp;</span><em>collaboration on assignment solutions is strictly forbidden</em>. The most certain way to protect yourself is not to discuss assignment solutions or the ideas behind them with students other than your partner. Certainly you must not let others see your assignment solutions, even in draft form. Please don't cheat. We want you to succeed and are here to help if you are having difficulty.</p>
+<h2 id="accessibility-needs">Accessibility Needs</h2>
+<p>The University of Toronto is committed to accessibility. If you require accommodations or have any accessibility concerns, please visit<span>&nbsp;</span><a href="http://www.accessibility.utoronto.ca/">Accessibility Services</a><span>&nbsp;</span>as soon as possible.</p>
+<p>&nbsp;</p>
+</div>
+<div id="course_syllabus_details" style="display: none;">
+  <p>The syllabus page shows a table-oriented view of the course schedule, and the basics of
+course grading.  You can add any other comments, notes, or thoughts you have about the course
+structure, course policies or anything else.</p>
+
+<p>To add some comments, click the "Edit" link at the top.</p>
+</div>
+<form id="edit_course_syllabus_form" style="display: none; margin-bottom: 10px;" action="https://q.utoronto.ca/courses/95202" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="4vngQbT5FKKk7dNcnH48KFlcpiLWhmkudbjIHf0uuVG4srkx5KBy1++6mxGqG2t8Ay3DQ7roH2NMi69M1kvLHQ==">
+  <div style="float: right;">
+    <a href="https://q.utoronto.ca/courses/95202#" class="toggle_views_link toggle_html_editor_link">HTML Editor</a>
+    <a href="https://q.utoronto.ca/courses/95202#" class="toggle_views_link toggle_rich_editor_link" style="display:none;">Rich Content Editor</a>
+  </div>
+  <label for="course_syllabus_body">Syllabus Description:</label>
+  <div class="clear"></div>
+  <textarea style="width: 100%; height: 300px;" id="course_syllabus_body" name="course[syllabus_body]"></textarea>
+  <div class="form-actions">
+    <button type="button" class="btn cancel_button">Cancel</button>
+    <button type="submit" class="btn btn-primary">Update Syllabus</button>
+  </div>
+</form>
+<h2>Course Summary:</h2>
+
+<div id="syllabusContainer"><div id="syllabus_links">
+  
+    &nbsp;
+  
+</div>
+<table id="syllabus" class="ic-Table ic-Table--condensed">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 25%;">Date</th>
+      <th scope="col" style="width: 75%;">
+        <div style="float: right;"></div>
+        Details
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+</div>
+
+</div>
+<div id="wizard_box"></div>
+
+
+          </div>
+        </div>
+        <div id="right-side-wrapper" class="ic-app-main-content__secondary">
+          <aside id="right-side" role="complementary">
+              <div id="course_show_secondary">
+
+      <div class="course-options">
+        <a href="https://q.utoronto.ca/courses/95202/external_tools/1812?launch_type=course_home_sub_navigation" class="btn button-sidebar-wide course-home-sub-navigation-lti">
+  <i class="icon-info"></i>
+Academic Integrity</a>
+
+          <a class="btn button-sidebar-wide" href="https://q.utoronto.ca/courses/95202?view=feed">
+            <i class="icon-stats"></i>
+            View Course Stream
+          </a>
+
+
+
+
+      </div>
+
+
+      <a class="btn button-sidebar-wide" href="https://q.utoronto.ca/calendar?include_contexts=course_95202">
+        <i class="icon-calendar-day"></i>
+        View Course Calendar
+      </a>
+
+    
+
+    <div class="todo-list Sidebar__TodoListContainer"><div><h2 class="todo-list-header"><span tabindex="-1">To Do</span></h2><ul id="planner-todosidebar-item-list" class="czbXA_bGBk tTloz_bGBk tTloz_fLbg undefined" data-cid="List" style="margin: 0px;"><li class="czbXA_bGBk dxCCp_bGBk dxCCp_fLbg dxCCp_ycrn dxCCp_cfzP" data-cid="ListItem"><div class="ToDoSidebarItem"><svg label="Announcement" name="IconAnnouncement" viewBox="0 0 1920 1920" rotate="0" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="fTsnK_bGBk fTsnK_eXrk bHbtJ_bGBk bHbtJ_owrh ToDoSidebarItem__Icon" data-cid="InlineSVG SVGIcon"><g role="presentation"><path d="M1920 847.053c0 136.32-97.13 250.503-225.882 276.705v513.883c0 26.202-17.958 49.016-43.483 55.002a57.279 57.279 0 0 1-12.988 1.468c-21.12 0-40.772-11.745-50.485-31.171C1379.238 1247.203 964.18 1242.347 960 1242.347H564.706v564.706h87.755c-11.859-90.127-17.506-247.003 63.473-350.683 52.405-67.087 129.657-101.082 229.948-101.082v112.941c-64.49 0-110.57 18.861-140.837 57.487-68.781 87.868-45.064 263.83-30.269 324.254 4.18 16.828.34 34.673-10.277 48.34-10.73 13.665-27.219 21.684-44.499 21.684H508.235c-31.171 0-56.47-25.186-56.47-56.47v-621.177h-56.47c-155.747 0-282.354-126.607-282.354-282.353v-56.47h-56.47C25.299 903.523 0 878.336 0 847.052c0-31.172 25.299-56.471 56.47-56.471h56.471v-56.47c0-155.634 126.607-282.354 282.353-282.354h564.593c16.941-.112 420.48-7.002 627.275-420.48 11.52-23.491 37.27-35.689 63.473-29.816 25.525 6.099 43.483 28.8 43.483 55.002V570.46C1822.87 596.662 1920 710.733 1920 847.053zm-225.882 159.02c65.618-23.378 112.94-85.496 112.94-159.02 0-73.525-47.322-135.53-112.94-158.909v317.93zm-112.942 438.438V249.707c-194.71 242.371-452.216 298.164-564.705 311.04v572.724c112.489 12.876 369.995 68.556 564.705 311.04zM903.53 1129.406V564.7H395.294c-93.402 0-169.412 76.01-169.412 169.411v225.883c0 93.402 76.01 169.412 169.412 169.412H903.53z" fill-rule="evenodd" stroke="none" stroke-width="1"></path></g></svg><div class="ToDoSidebarItem__Info"><div class="ToDoSidebarItem__Title"><a href="https://q.utoronto.ca/courses/95202/discussion_topics/303163" class="czbXA_bGBk cIcZl_bGBk" data-cid="Link"><span class="ELpHc_bGBk ELpHc_doqw ELpHc_fNIu ELpHc_eQnG">Course Website, Week 2 Lecture Prep</span></a></div><span class="ELpHc_bGBk ELpHc_doqw ELpHc_bdMA ELpHc_fNIu ELpHc_eQnG ELpHc_bLsb"></span><ul class="czbXA_bGBk tTloz_bGBk tTloz_eXrk undefined" data-cid="List" style="margin: 0px;"><li class="czbXA_bGBk dxCCp_bGBk dxCCp_eXrk dxCCp_doqw dxCCp_dnHs" data-cid="ListItem">May 10 at 12:52pm<span class="dxCCp_eLRq" aria-hidden="true"></span></li></ul></div><div class="ToDoSidebarItem__Close"><span class="ejhDx_bGBk ejhDx_doBn ejhDx_coHh" data-cid="CloseButton"><button type="button" tabindex="0" class="czbXA_bGBk eHiXd_bGBk eHiXd_dnnz eHiXd_doqw eHiXd_bPzo eHiXd_cuTS eHiXd_wWyq" data-cid="Button" style="margin: 0px; cursor: pointer;"><span class="eHiXd_caGd"><span class="eHiXd_eoCh"><svg name="IconX" viewBox="0 0 1920 1920" rotate="0" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="fTsnK_bGBk fTsnK_cRbP bHbtJ_bGBk" data-cid="InlineSVG SVGIcon"><g role="presentation"><path d="M771.548 960.11L319 1412.658l188.562 188.562 452.548-452.548 452.548 452.548 188.562-188.562-452.548-452.548 452.548-452.548L1412.658 319 960.11 771.548 507.562 319 319 507.562z" fill-rule="nonzero" stroke="none" stroke-width="1"></path></g></svg></span><span class="fdaJD_bGBk">Dismiss Course Website, Week 2 Lecture Prep</span></span></button></span></div></div></li></ul></div></div>
+
+    
+
+    
+  </div>
+    
+<div id="sidebar_content">
+  
+<div class="mini_month">
+  <div class="mini-cal-header">
+    <button class="prev_month_link Button Button--icon-action"><i class="icon-arrow-open-left"></i><span class="screenreader-only">Prev month</span></button>
+    <button class="next_month_link Button Button--icon-action"><i class="icon-arrow-open-right"></i><span class="screenreader-only">Next month</span></button>
+    <span class="mini-cal-month-and-year">
+      <span class="month_name">May</span>
+      <span class="year_number">2019</span>
+    </span>
+  </div>
+  <div style="display: none;">
+    <span class="month_number">5</span>
+  </div>
+  <table class="mini_calendar" cellspacing="0">
+    <caption class="screenreader-only">Calendar</caption>
+    <thead>
+      <tr>
+          <th scope="col">
+            <span class="screenreader-only">
+              Sunday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Monday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Tuesday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Wednesday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Thursday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Friday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Saturday
+            </span>
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2019_04_28" class="mini_calendar_day day other_month previous_month date_04_28_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                28
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_04_29" class="mini_calendar_day day other_month previous_month date_04_29_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                29
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_04_30" class="mini_calendar_day day other_month previous_month date_04_30_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                30
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_01" class="mini_calendar_day day current_month date_05_01_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                1
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_02" class="mini_calendar_day day current_month date_05_02_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                2
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_03" class="mini_calendar_day day current_month date_05_03_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                3
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_04" class="mini_calendar_day day current_month date_05_04_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                4
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2019_05_05" class="mini_calendar_day day current_month date_05_05_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                5
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_06" class="mini_calendar_day day current_month date_05_06_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                6
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_07" class="mini_calendar_day day current_month date_05_07_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                7
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_08" class="mini_calendar_day day current_month date_05_08_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                8
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_09" class="mini_calendar_day day current_month date_05_09_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                9
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_10" class="mini_calendar_day day current_month date_05_10_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                10
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_11" class="mini_calendar_day day current_month date_05_11_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                11
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2019_05_12" class="mini_calendar_day day current_month date_05_12_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                12
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_13" class="mini_calendar_day day current_month date_05_13_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                13
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_14" class="mini_calendar_day day current_month date_05_14_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                14
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_15" class="mini_calendar_day day current_month date_05_15_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                15
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_16" class="mini_calendar_day day current_month date_05_16_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                16
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_17" class="mini_calendar_day day current_month date_05_17_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                17
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_18" class="mini_calendar_day day current_month date_05_18_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                18
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2019_05_19" class="mini_calendar_day day current_month date_05_19_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                19
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_20" class="mini_calendar_day day current_month date_05_20_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                20
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_21" class="mini_calendar_day day current_month date_05_21_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                21
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_22" class="mini_calendar_day day current_month today date_05_22_2019 related">
+            <div class="day_wrapper">
+              <span class="day_number">
+                22
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_23" class="mini_calendar_day day current_month date_05_23_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                23
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_24" class="mini_calendar_day day current_month date_05_24_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                24
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_25" class="mini_calendar_day day current_month date_05_25_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                25
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2019_05_26" class="mini_calendar_day day current_month date_05_26_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                26
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_27" class="mini_calendar_day day current_month date_05_27_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                27
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_28" class="mini_calendar_day day current_month date_05_28_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                28
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_29" class="mini_calendar_day day current_month date_05_29_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                29
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_30" class="mini_calendar_day day current_month date_05_30_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                30
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_05_31" class="mini_calendar_day day current_month date_05_31_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                31
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_06_01" class="mini_calendar_day day other_month next_month date_06_01_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                1
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2019_06_02" class="mini_calendar_day day other_month next_month date_06_02_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                2
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_06_03" class="mini_calendar_day day other_month next_month date_06_03_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                3
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_06_04" class="mini_calendar_day day other_month next_month date_06_04_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                4
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_06_05" class="mini_calendar_day day other_month next_month date_06_05_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                5
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_06_06" class="mini_calendar_day day other_month next_month date_06_06_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                6
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_06_07" class="mini_calendar_day day other_month next_month date_06_07_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                7
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2019_06_08" class="mini_calendar_day day other_month next_month date_06_08_2019">
+            <div class="day_wrapper">
+              <span class="day_number">
+                8
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    
+<div role="complementary" aria-label="Assignment Weights">
+  <h2>Course assignments are not weighted.</h2>
+</div>
+
+</div>
+<div id="editor_tabs" style="display: none;">
+  <!-- this is just here so canvas-rce knows where to render the sidebar into -->
+</div>
+
+
+    
+<div class="events_list
+  recent_feedback">
+  <div class="h2 shared-space">
+    <h2>Recent Feedback</h2>
+  </div>
+  <ul class="right-side-list events">
+    <li>
+      <small>
+          Nothing for now
+      </small>
+    </li>
+  </ul>
+</div>
+
+
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <div style="display:none;"><!-- Everything inside of this should always stay hidden -->
+        <div id="page_view_id">b5467ca3-84ef-4f09-8c4e-bc8f38ec0e8b</div>
+    </div>
+  <div id="aria_alerts" class="hide-text affix" role="alert" aria-live="assertive"></div>
+  <div id="StudentTray__Container"></div>
+    <div class="NewUserTutorialTray__Container"></div>
+  
+
+<script>
+  INST = {"environment":"production","allowMediaComments":true,"kalturaSettings":{"domain":"yul.nv.instructuremedia.com","resource_domain":"yul.nv.instructuremedia.com","rtmp_domain":"yul.rtmp.instructuremedia.com","partner_id":7,"subpartner_id":0,"player_ui_conf":0,"kcw_ui_conf":0,"upload_ui_conf":0,"max_file_size_bytes":534773760,"js_uploader":"yes"},"googleAnalyticsAccount":"UA-9138420-1","disableGooglePreviews":true,"logPageViews":true,"maxVisibleEditorButtons":3,"editorButtons":[{"name":"YouTube","id":50,"url":"https://www.edu-apps.org/lti_public_resources/?tool_id=youtube","icon_url":"https://www.edu-apps.org/assets/lti_public_resources/youtube_icon.png","canvas_icon_class":null,"width":560,"height":600,"use_tray":false}]};
+  ENV = {"ASSET_HOST":"https://du11hjcvx0uqb.cloudfront.net/br","active_brand_config_json_url":"https://du11hjcvx0uqb.cloudfront.net/br/dist/brandable_css/fdd2743c1622a19abbba68e624234281/variables-bb3d77e122d78a31c5ed488617cc8913.json","url_to_what_gets_loaded_inside_the_tinymce_editor_css":["https://du11hjcvx0uqb.cloudfront.net/br/dist/brandable_css/fdd2743c1622a19abbba68e624234281/variables-bb3d77e122d78a31c5ed488617cc8913.css","https://du11hjcvx0uqb.cloudfront.net/br/dist/brandable_css/new_styles_normal_contrast/bundles/what_gets_loaded_inside_the_tinymce_editor-5f828087f8.css"],"url_for_high_contrast_tinymce_editor_css":["https://du11hjcvx0uqb.cloudfront.net/br/dist/brandable_css/default/variables-high_contrast-bb3d77e122d78a31c5ed488617cc8913.css","https://du11hjcvx0uqb.cloudfront.net/br/dist/brandable_css/new_styles_high_contrast/bundles/what_gets_loaded_inside_the_tinymce_editor-ba04ee4d4d.css"],"current_user_id":"24594","current_user_roles":["user","student"],"current_user_disabled_inbox":false,"files_domain":"cluster75.canvas-user-content.com","DOMAIN_ROOT_ACCOUNT_ID":118340000000000001,"k12":false,"use_responsive_layout":false,"use_rce_enhancements":false,"help_link_name":"Help","help_link_icon":"help","use_high_contrast":false,"LTI_LAUNCH_FRAME_ALLOWANCES":["geolocation *","microphone *","camera *","midi *","encrypted-media *","autoplay *"],"DEEP_LINKING_POST_MESSAGE_ORIGIN":"https://q.utoronto.ca","DEEP_LINKING_LOGGING":null,"SETTINGS":{"open_registration":false,"eportfolios_enabled":true,"collapse_global_nav":false,"show_feedback_link":true,"enable_profiles":true},"ARC_RECORDING_FEATURE_ENABLED":true,"current_user":{"id":"24594","display_name":"Haider Sajjad","avatar_image_url":"https://q.utoronto.ca/images/messages/avatar-50.png","html_url":"https://q.utoronto.ca/about/24594","avatar_is_fallback":true},"page_view_update_url":"/page_views/b5467ca3-84ef-4f09-8c4e-bc8f38ec0e8b?page_view_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpIjoiYjU0NjdjYTMtODRlZi00ZjA5LThjNGUtYmM4ZjM4ZWMwZThiIiwidSI6MTE4MzQwMDAwMDAwMDI0NTk0LCJjIjoiMjAxOS0wNS0yMlQxMzowMjo0NC4yNloifQ.f4Uccb0OFJu1LfBMizmaLioUeZ-2_m95qe0X_r8lNpw","context_asset_string":"course_95202","ping_url":"https://q.utoronto.ca/api/v1/courses/95202/ping","TIMEZONE":"America/New_York","CONTEXT_TIMEZONE":"America/New_York","LOCALE":"en-CA","BIGEASY_LOCALE":"en_CA","FULLCALENDAR_LOCALE":"en-ca","MOMENT_LOCALE":"en-ca","INCOMPLETE_REGISTRATION":null,"USER_EMAIL":"haider.sajjad@mail.utoronto.ca","badge_counts":{"submissions":0},"NEW_USER_TUTORIALS":{"is_enabled":false},"STUDENT_PLANNER_ENABLED":true,"COURSE":{"id":"95202","pages_url":"https://q.utoronto.ca/courses/95202/pages","front_page_title":null,"default_view":"syllabus"},"RICH_CONTENT_APP_HOST":"rich-content-yul.inscloudgate.net","RICH_CONTENT_SKIP_SIDEBAR":null,"JWT":"ZXlKaGJHY2lPaUprYVhJaUxDSmxibU1pT2lKQk1qVTJSME5OSW4wLi5XS0plclJGMW0xMlMzaHN3LndVRWFmejBHemtDWmhLTE5CNXFmcVBvdUFhVy1md3B1YldXUWFnbFhUWE1iZHRsaDZ5VXhsb21aclhNOWVYemlfcEgtdmZmUDRKX2otVm52LXJSa1FQNHVJS3MyZUFuU1kwVXBGa1VWbXdmc1k0MzNGVzJacU9KUHRmaW1YWGtzRTVLcUpZb1dCaVpRV212MFk3eGlDay1nRG5DVTk3TFowaGFoMzVQSHZXWWJhVDdqQkVYRE5fUzdIRWZLb1hNZXVBZ0gzWVBaVHRuN18xNHpydHVXR0tSQzhna1hwa0cyMXNrVEt2QUxsWThKTkhFX1FnYWEyc250S29sMkE4ZHRLbTdnWnlFWC0zT2NPTS10dkNfdHdLZ1NTcWViczAwWE1rRjZicTJWNTh4OVZ4bkZlVm16bEg3WXkycXplOFgxVHotaHdERFprb0w3eVF5N3l3OHdERkFibFRjbTVwREY3WVdmeVg4SEdOU01GWVZhTkV6SUtreEo1cFp6cGpvVDZ2SktvcWljMmNDZ2FEaEZ1WDg2MTJDRUUxd093b1A2bHZ3R2s0NGM3SWxIWTFxSDNhX1o3VlNHLV9jMjg4X1VabHluLUplazRNUHZ5ZTcxM2paYVh1SFJPRHV0WlZzOHpPWUNiOHpBSC1GVVliQXJ2cXJ2b0J3WWhtcnN0d2dqMFJBRFluaV9IeWdKeDZRYU1XRFg1c004WkFvLVJXTFZmX2ZJQjZqS0xmaFgwTi1jQVZIdTQ2VkMybk9TOU9sUDdlTmZsRzJ6QmtQdHg2QjROOW9CVkRmMTh0dXRzbi1HZGgtLUoybDZRbm5pM1hUbUIzS2I0Q1g3WmNHS1hiUjdhbnQ2d3dnWU5IYmtuYnZDa1I1aTN6N1lqaDFzWERueW9hdmp6NlpZUVNTWVEyVHVCTUh5WDIyVG9XblNFTGUwN0NDc3VjVHJteW90bkNoTlFWYlZUamlDQ09FM0J6dzJHOTJjazhGaGFpWnNQYmpLLWs5Y1ZkMTJEN21SUElpZHctMWsydlhRVXVmUmpDWl80djUwYzVicVFZcl91Y1UuZElncWF0d3JremNGOG1lanZSUi1GUQ==","RICH_CONTENT_CAN_UPLOAD_FILES":false,"RICH_CONTENT_FILES_TAB_DISABLED":true,"CAN_READ":true,"SYLLABUS_BODY":"\u003cp style=\"text-align: justify;\"\u003e\u003cspan style=\"font-size: 1rem;\"\u003eTo contact the course instructor regarding personal issues related to csc343, please use this email address:\u003c/span\u003e\u003c/p\u003e\n\u003cp style=\"text-align: justify;\"\u003e\u003cspan style=\"font-size: 1rem;\"\u003e \u003c/span\u003e\u003ca style=\"font-size: 1rem;\" href=\"mailto:csc343-2019-05@cs.toronto.edu\"\u003ecsc343-2019-05@cs.toronto.edu\u003c/a\u003e\u003c/p\u003e\n\u003cp style=\"text-align: justify;\"\u003eFor \u003cspan\u003egeneral course-related questions\u003c/span\u003e, please use Piazza or visit us during office hours.\u003c/p\u003e\n\u003chr\u003e\n\u003cp style=\"text-align: justify;\"\u003e\u003cspan\u003eWelcome to CSC343H! This course provides an Introduction to Databases, and prepares you for later study in the implementation of Database Management Systems.\u003c/span\u003e\u003c/p\u003e\n\u003cp style=\"text-align: justify;\"\u003e\u003cspan style=\"font-size: 1rem;\"\u003eThe material posted on Quercus is required reading. It contains important information: assignment handouts, the policy on missed work, links to the online discussion forum (Piazza), the announcements page, and more. You are responsible for all announcements made in lecture and on Quercus.\u003c/span\u003e\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"prerequisites\"\u003ePrerequisites\u003c/h2\u003e\n\u003cp\u003eArts and Science students: If you don't have the course prerequisites listed in the\u003cspan\u003e \u003c/span\u003e\u003ca href=\"https://fas.calendar.utoronto.ca/course/csc343h1\"\u003ecalendar entry\u003c/a\u003e, contact the instructor immediately to see whether you may remain in the course. Include your name, student number, full academic history from Acorn, and why you feel you are well prepared to take the course. If we don't issue a waiver, the registrar will remove you from the course.\u003c/p\u003e\n\u003cp\u003eEngineering students: If you don't have the course prerequisites listed in your calendar, your registrar may not allow you to take the course without my permission. If so, email me with your name, student number, full academic history from Acorn, and why you feel you are well prepared to take the course.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"instructors\"\u003eInstructor\u003c/h2\u003e\n\u003cdiv class=\"page\" title=\"Page 1\"\u003e\n\u003cdiv class=\"section\"\u003e\n\u003cdiv class=\"layoutArea\"\u003e\n\u003cdiv class=\"column\"\u003e\n\u003cp style=\"text-align: justify;\"\u003e\u003cspan\u003eFor electronic communication, please use email from your UofT address for personal issues and the discussion forum to ask general course-related questions. \u003cbr\u003e\u003c/span\u003e\u003cspan\u003eFor email, include “CSC343” in the subject line and sign your full name \u003cstrong\u003eand \u003c/strong\u003eUTORid. \u003c/span\u003e\u003c/p\u003e\n\u003cp style=\"text-align: justify;\"\u003e\u003cspan\u003eMark is the Course Coordinator, which means that he deals with all administrative issues (ex. missed work, problems with your grades, the course website, and TA issues). \u003c/span\u003e\u003c/p\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003ctable style=\"border-collapse: collapse; margin-left: auto; margin-right: auto; width: 59.2475%; height: 200px;\" border=\"1\" cellspacing=\"10\" cellpadding=\"10\"\u003e\n\u003ctbody style=\"text-align: center;\"\u003e\n\u003ctr style=\"height: 84px;\"\u003e\n\u003ctd style=\"width: 14.5709%; height: 57px;\"\u003e\u003cstrong\u003eInstructor\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"text-align: center; width: 36.6267%; height: 57px;\"\u003e\n\u003cp\u003e\u003cstrong\u003eMark Kazakevich\u003c/strong\u003e\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 48px;\"\u003e\n\u003ctd style=\"width: 14.5709%; height: 48px;\"\u003e\u003cstrong\u003eOffice Hours\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"text-align: center; width: 36.6267%; height: 48px;\"\u003eWednesdays 5-6pm in BA 2283\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 48px;\"\u003e\n\u003ctd style=\"width: 14.5709%; height: 48px;\"\u003e\u003cstrong\u003eEmail\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"width: 36.6267%; height: 48px;\"\u003e\n\u003cp style=\"text-align: center;\"\u003e\u003ca style=\"font-size: 1rem;\" href=\"mailto:csc343-2019-05@cs.toronto.edu\"\u003ecsc343-2019-05@cs.toronto.edu\u003c/a\u003e\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 108px;\"\u003e\n\u003ctd style=\"width: 14.5709%; height: 47px;\"\u003e\u003cstrong\u003eSections\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"width: 36.6267%; height: 47px;\"\u003e\n\u003cp\u003eL5101, R6-9 in BA 1130\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003chr\u003e\n\u003ch2 id=\"markingscheme\"\u003eMarking Scheme Summary\u003c/h2\u003e\n\u003ctable style=\"border-collapse: collapse; margin-left: auto; margin-right: auto; width: 99.7418%;\" border=\"1\" cellspacing=\"10\" cellpadding=\"10\"\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd style=\"width: 12.1447%;\"\u003e\n\u003cp\u003eLecture Prep\u003c/p\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 4.78036%;\"\u003e\n\u003cp\u003e10%\u003c/p\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 55.1044%;\"\u003e\n\u003cdiv class=\"page\" title=\"Page 1\"\u003e\n\u003cdiv class=\"section\"\u003e\n\u003cdiv class=\"layoutArea\"\u003e\n\u003cdiv class=\"column\"\u003e\n\u003cp\u003eEach worth 1%. Before lecture for weeks 2-11.\u003c/p\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 27.8414%;\"\u003e\n\u003cdiv class=\"page\" title=\"Page 1\"\u003e\n\u003cdiv class=\"section\"\u003e\n\u003cdiv class=\"layoutArea\"\u003e\n\u003cdiv class=\"column\"\u003e\n\u003cp\u003eDue Thursdays before noon (12pm)\u003c/p\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd style=\"width: 12.1447%;\"\u003eAssignments (3)\u003c/td\u003e\n\u003ctd style=\"width: 4.78036%;\"\u003e30%\u003c/td\u003e\n\u003ctd style=\"width: 55.1044%;\"\u003eEach worth 10%\u003c/td\u003e\n\u003ctd style=\"width: 27.8414%;\"\u003eJune 8, July 15, August 5\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd style=\"width: 12.1447%;\"\u003eMidterm Test\u003c/td\u003e\n\u003ctd style=\"width: 4.78036%;\"\u003e15%\u003c/td\u003e\n\u003ctd style=\"width: 55.1044%;\"\u003eDuring lecture time. Topics and location TBA.\u003c/td\u003e\n\u003ctd style=\"width: 27.8414%;\"\u003eThursday, July 4\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd style=\"width: 12.1447%;\"\u003eFinal Exam\u003c/td\u003e\n\u003ctd style=\"width: 4.78036%;\"\u003e45%\u003c/td\u003e\n\u003ctd style=\"width: 55.1044%;\"\u003eYou must get 40% or above on the final exam to pass the course; otherwise, your final course grade will be no higher than 47%.\u003c/td\u003e\n\u003ctd style=\"width: 27.8414%;\"\u003eAugust, TBA\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003chr\u003e\n\u003ch2 id=\"active-classes-and-preparation-for-them\"\u003eActive Classes, and Preparation for Them\u003c/h2\u003e\n\u003cp\u003eDuring class time in this course, we will present material and demonstrate problem solving for part of the time. There will also regularly be activities that you participate in. Be prepared to get your gears turning in class! There is good evidence, and our experience also shows, that active learning works better than passively listening to a lecture. We also think it's a lot more fun. We will use \u003cstrong\u003eall three hours\u003c/strong\u003e of our meeting time for these kinds of classes, led by your instructor.\u003c/p\u003e\n\u003cp\u003eDuring some in-class activities, students will see and discuss each other's solutions to problems. This is your official notice (per the University's privacy regulations) that your personal information will be used in this way. If you wish to opt out of these particular activities, please notify your professor at the beginning of the term. Opting out will not directly impact your mark in the course, but you will lose a valuable learning opportunity.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eLecture preps: \u003c/strong\u003eTo prepare for these active classes, you will be doing weekly activities outside of class. These will involve learning some material on your own, through readings or videos, and practising things we've learned in class. They will always culminate in some small exercises that you hand in.\u003cspan\u003e \u003c/span\u003e\u003cstrong\u003eThese weekly activities are not intended to be greatly time consuming.\u003c/strong\u003e\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"resources\"\u003eResources\u003c/h2\u003e\n\u003cp\u003eThese two resources are suggested to support your learning in the course:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003eThe textbook \"A First Course in Database Systems\" by Jeffrey D. Ullman and Jennifer Widom, 2008 (3rd Edition), available online from the\u003cspan\u003e \u003c/span\u003e\u003ca href=\"http://www.mypearsonstore.com/bookstore/product.asp?isbn=013600637X\u0026amp;xid=PSED\"\u003epublisher\u003c/a\u003e,\u003cspan\u003e \u003c/span\u003e\u003ca href=\"http://www.chapters.indigo.ca/home/search/?keywords=A%20First%20Course%20in%20Database%20Systems\u0026amp;pageSize=12\"\u003eChapters\u003c/a\u003e, or\u003cspan\u003e \u003c/span\u003e\u003ca href=\"http://www.amazon.ca/s/ref=nb_sb_ss_i_0_34?url=search-alias%3Daps\u0026amp;field-keywords=a+first+course+in+database+systems\u0026amp;x=0\u0026amp;y=0\u0026amp;sprefix=a+first+course+in+database+systems\"\u003eAmazon\u003c/a\u003e. It is also available on two-hour loan at the Engineering Library in the Sandford Fleming Building.  It may or may not be available at the UofT Bookstore at this time.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003eThe\u003cspan\u003e \u003c/span\u003e\u003ca href=\"https://class.stanford.edu/courses/DB/2014/SelfPaced/about\"\u003eonline mini-courses\u003c/a\u003e\u003cspan\u003e \u003c/span\u003eby Jennifer Widom at Stanford University.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch2 id=\"working-with-a-partner\"\u003eWorking with a Partner\u003c/h2\u003e\n\u003cp\u003eYou have the option of partnering with one other CSC343 student for your assignments, and we encourage you to do so. You may choose your own partner, and it need not be the same person for each assignment. Once you begin working on an assignment, you may not dissolve your partnership without my permission. Both partners will receive the same mark for joint assignments.\u003c/p\u003e\n\u003cp\u003eWorking with a partner has the potential to lighten your workload and enhance your learning or to increase your workload and impair your learning, depending on how you work together. Remember that you are responsible for learning the course material underlying all parts of the assignments. You will have the most success if you truly work together.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"assignment-policies\"\u003eAssignment Policies\u003c/h2\u003e\n\u003cp\u003eAssignments are due on\u003cspan\u003e \u003c/span\u003e\u003cstrong\u003eMondays before 10:00 pm\u003c/strong\u003e\u003cspan\u003e \u003c/span\u003esharp. Assignments must be submitted electronically, using the\u003cspan\u003e \u003c/span\u003e\u003ca href=\"https://markus.cdf.toronto.edu/csc343-2019-05\"\u003eMarkUs online system\u003c/a\u003e. Log in with your CS Teaching Labs username and password. Be sure to confirm that you have submitted all the required files and the correct version of each; we cannot accept missing files or a different version of an already-submitted file after the due date. Code that you submit to us for grading must work on the CS Teaching Labs machines in order to earn credit.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"late-assignments\"\u003eLate Assignments\u003c/h2\u003e\n\u003cp\u003eYou can turn in your assignments up to 1 day late at a cost of 10% for each 12 hour period you are late. If you are struggling with an exercise, talk to the instructor or the TA’s for help before the deadline.\u003c/p\u003e\n\u003cp\u003eSince your work is submitted electronically and will often be tested using an automated testing program, you must follow the submission instructions exactly. If you do not, you will most likely lose substantial marks on the assignment. Check your submission carefully.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eNo late lecture preps will be accepted.\u003c/strong\u003e\u003c/p\u003e\n\u003ch2 id=\"special-consideration\"\u003eSpecial Consideration\u003c/h2\u003e\n\u003cp\u003eIf you are unable to complete homework or if you miss a test due to major illness or other circumstances completely outside of your control, please email me immediately if you want to receive special consideration.\u003c/p\u003e\n\u003ch2 id=\"academic-integrity\"\u003eAcademic Integrity\u003c/h2\u003e\n\u003cp\u003eThe work you submit must be your own. It is an academic offence to copy someone else's work. This includes their code, their words, and even their ideas. Whether you copy or let someone else copy, it is an offence. Academic offences are taken very seriously.\u003c/p\u003e\n\u003cp\u003eAt the same time, we want you to benefit from working with other students. Obviously, work done with your partner is a joint effort. You are also welcome to work appropriately with students other than your partner. It is appropriate to discuss course material and technology related to assignments, and we encourage you to do so. For example, you may work through examples that help you understand course material or a new technology, or help each other configure your system to run a supporting piece of software. You may also discuss assignment requirements.\u003c/p\u003e\n\u003cp\u003eHowever, other than between partners,\u003cspan\u003e \u003c/span\u003e\u003cem\u003ecollaboration on assignment solutions is strictly forbidden\u003c/em\u003e. The most certain way to protect yourself is not to discuss assignment solutions or the ideas behind them with students other than your partner. Certainly you must not let others see your assignment solutions, even in draft form. Please don't cheat. We want you to succeed and are here to help if you are having difficulty.\u003c/p\u003e\n\u003ch2 id=\"accessibility-needs\"\u003eAccessibility Needs\u003c/h2\u003e\n\u003cp\u003eThe University of Toronto is committed to accessibility. If you require accommodations or have any accessibility concerns, please visit\u003cspan\u003e \u003c/span\u003e\u003ca href=\"http://www.accessibility.utoronto.ca\"\u003eAccessibility Services\u003c/a\u003e\u003cspan\u003e \u003c/span\u003eas soon as possible.\u003c/p\u003e\n\u003cp\u003e \u003c/p\u003e","notices":[]};
+</script>
+
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/navigation_header.bundle-96cb12770e.js.download" defer="defer"></script>
+<script src="./CSC343H1 Y LEC5101 20195_Introduction to Databases_files/UoT_Footer_Link.js.download" defer="defer"></script>
+
+</div> <!-- #application -->
+
+
+<div id="nav-tray-portal" style="position: relative; z-index: 99;"></div></body></html>
