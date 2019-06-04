@@ -104,6 +104,22 @@ Let r1 and r2 be two instances of Rating relation.
 \item % 6
 Question: Report the capacities of the restaurants from which patrons have so far only ordered foods with a
 ‘gluten-free’ dietary restriction.\\	
+
+Make a relation called glutenfree that holds the did, of every dish that is gluten free. And make a relation called gfOrders that holds the rid of every patron who has ordered a gluten free patron.
+		
+		\begin{align}
+        glutenfree(DID):= \Pi_{RID} (\sigma_{directory = \text{‘gluten-free’}}(Dish))\\
+        temp(RID) := \Pi_{RID} (glutenfree \bowtie Order)
+		\end{align} 
+	Make another relation called restnames that holds the restaurant name of every restaurant that serves 'gluten-free food'. Do this by natural joining temp with Reservation. 
+	Finally cross restnames and Restaurant to get the capacity of every resteraunt serving 'gluten-free'.
+	
+	\begin{align}
+         restnames(rname):= \Pi_{rname} (temp \bowtie Reservation)\\
+         \Pi_{capacity} (\sigma_{restnames.rname = Restaurant.name} (restnames \times Restaurant))
+		\end{align} 
+	
+	
 \end{enumerate}
 
 
