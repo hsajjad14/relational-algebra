@@ -47,11 +47,11 @@ report all of them.\\
 		
 		 Let nottop be the relation of all PID's that are not the maximum
 		\begin{align}
-        nottop:= \Pi_{(r1.PID)}\;(\sigma_{r2.rating > r1.rating \: \wedge \: r2.PID  \neq r1.PID}\;(r1 \times r2))
+        nottop(PID):= \Pi_{(r1.PID)}\;(\sigma_{r2.rating > r1.rating \: \wedge \: r2.PID  \neq r1.PID}\;(r1 \times r2))
 		\end{align} 
 		Let temp be the relation of all maximums, pid's that are in Rating but not in nottop. Natural Join temp with patron to get the names of the Patrons with pids in temp.
 		\begin{align}
-        temp:= 	(\Pi_{PID} Rating) - nottop\\
+        temp(PID):= 	(\Pi_{PID} Rating) - nottop\\
         \Pi_{fname,lname}\;(temp \bowtie Patron)
 		\end{align} 
 		
@@ -62,10 +62,48 @@ are ties report all of them.\\
 
         Can't be done with relational algebra operations. 
     \item % 3
-        Third question here
+        Question: Report the PID(s) of the Patrons(s) who reserved a spot at a restaurant, but did not order anything.\\
+        
+        Make an pidsOrdered relation that holds the pid of every patron who has made an order by natural joining Order with Reservation. Then subtract pidsOrdered from the set of all Reservation pids, this will give all the patron pids who have a reservation but have not ordered anything.
+        \begin{align}
+        pidsOrdered(RID):= \Pi_{RID}\;(Order \bowtie Reservation)\\
+        (\Pi_{PID} Reservation) - pidsOrdered
+		\end{align} 
        
     \item % 4 
-        Fourth question goes here
+         Question: Report the name(s) of the Patrons(s) who have made a reservation to the restaurant
+named ‘Boston Pizza’ and ordered 3 of a dish called ’Margherita Pizza’.\\
+
+Make a relation called pBP that holds the pid and rid of every patron who has made a reservation at 'Boston Pizza'. 
+And a relation called mp that holds the did of a dish called ’Margherita Pizza’.
+
+\begin{align}
+       pBP(PID,RID) := \Pi_{PID, RID}\;(\sigma_{rname = \text{'Boston Pizza'}}(Reservation))\\
+        mp(DID) := \Pi_{DID}\;(\sigma_{name = \text{’Margherita Pizza’}}(Dish))
+		\end{align} 
+		
+		Let temp be the relation holding every order from Boston pizza that has 3 of any dish. Then, natural join temp and mp to get all the orders where ’Margherita Pizza’ was ordered 3 times. And natural join again with Patron to  get the names of the patrons. 
+		
+\begin{align}
+       temp := \sigma_{number = 3}(pBP \bowtie Order))\\
+       \Pi_{fname, lname}[(\Pi_{PID} (mp \bowtie temp)) \bowtie Patron]
+		\end{align} 
+
+\item % 5 
+Question: Report the owner of the restaurant with the highest average rating. If there are ties, report all of them.\\
+
+We can't find average in relational algebra.
+
+Let r1 and r2 be two instances of Rating relation.
+         \begin{align}
+        r1:= \rho \text{  r1 Rating}  \\
+        r2:= \rho \text{  r2 Rating}
+		\end{align}     
+		...
+
+\item % 6
+Question: Report the capacities of the restaurants from which patrons have so far only ordered foods with a
+‘gluten-free’ dietary restriction.\\	
 \end{enumerate}
 
 
