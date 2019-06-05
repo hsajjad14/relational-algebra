@@ -5,6 +5,7 @@
 \usepackage{amsmath, amssymb}   % math formatting & symbols
 \usepackage{graphicx}           % insert graphics
 %\usepackage{eulervm, bookman}   % fonts for math & symbols
+\usepackage{mathtools}
 \usepackage{fullpage}          % fullpage margins
 
 \begin{document}
@@ -41,17 +42,17 @@ report all of them.\\
         Let $r1$ and $r2$ be two Rating relations
         
         \begin{align}
-        r1:= \rho \text{  r1 Rating}  \\
-        r2:= \rho \text{  r2 Rating}
+        r1\coloneqq \rho \text{  r1 Rating}  \\
+        r2\coloneqq \rho \text{  r2 Rating}
 		\end{align}     
 		
 		 Let nottop be the relation of all PID's that are not the maximum
 		\begin{align}
-        nottop(PID):= \Pi_{(r1.PID)}\;(\sigma_{r2.rating > r1.rating \: \wedge \: r2.PID  \neq r1.PID}\;(r1 \times r2))
+        nottop(PID)\coloneqq \Pi_{(r1.PID)}\;(\sigma_{r2.rating > r1.rating \: \wedge \: r2.PID  \neq r1.PID}\;(r1 \times r2))
 		\end{align} 
 		Let temp be the relation of all maximums, pid's that are in Rating but not in nottop. Natural Join temp with patron to get the names of the Patrons with pids in temp.
 		\begin{align}
-        temp(PID):= 	(\Pi_{PID} Rating) - nottop\\
+        temp(PID)\coloneqq 	(\Pi_{PID} Rating) - nottop\\
         \Pi_{fname,lname}\;(temp \bowtie Patron)
 		\end{align} 
 		
@@ -66,7 +67,7 @@ are ties report all of them.\\
         
         Make an pidsOrdered relation that holds the pid of every patron who has made an order by natural joining Order with Reservation. Then subtract pidsOrdered from the set of all Reservation pids, this will give all the patron pids who have a reservation but have not ordered anything.
         \begin{align}
-        pidsOrdered(RID):= \Pi_{RID}\;(Order \bowtie Reservation)\\
+        pidsOrdered(RID)\coloneqq \Pi_{RID}\;(Order \bowtie Reservation)\\
         (\Pi_{PID} Reservation) - pidsOrdered
 		\end{align} 
        
@@ -78,14 +79,14 @@ Make a relation called pBP that holds the pid and rid of every patron who has ma
 And a relation called mp that holds the did of a dish called ’Margherita Pizza’.
 
 \begin{align}
-       pBP(PID,RID) := \Pi_{PID, RID}\;(\sigma_{rname = \text{'Boston Pizza'}}(Reservation))\\
-        mp(DID) := \Pi_{DID}\;(\sigma_{name = \text{’Margherita Pizza’}}(Dish))
+       pBP(PID,RID) \coloneqq \Pi_{PID, RID}\;(\sigma_{rname = \text{'Boston Pizza'}}(Reservation))\\
+        mp(DID) \coloneqq \Pi_{DID}\;(\sigma_{name = \text{’Margherita Pizza’}}(Dish))
 		\end{align} 
 		
 		Let temp be the relation holding every order from Boston pizza that has 3 of any dish. Then, natural join temp and mp to get all the orders where ’Margherita Pizza’ was ordered 3 times. And natural join again with Patron to  get the names of the patrons. 
 		
 \begin{align}
-       temp := \sigma_{number = 3}(pBP \bowtie Order))\\
+       temp \coloneqq \sigma_{number = 3}(pBP \bowtie Order))\\
        \Pi_{fname, lname}[(\Pi_{PID} (mp \bowtie temp)) \bowtie Patron]
 		\end{align} 
 
@@ -96,8 +97,8 @@ We can't find average in relational algebra.
 
 Let r1 and r2 be two instances of Rating relation.
          \begin{align}
-        r1:= \rho \text{  r1 Rating}  \\
-        r2:= \rho \text{  r2 Rating}
+        r1 \coloneqq \rho \text{  r1 Rating}  \\
+        r2\coloneqq \rho \text{  r2 Rating}
 		\end{align}     
 		...
 
@@ -108,14 +109,14 @@ Question: Report the capacities of the restaurants from which patrons have so fa
 Make a relation called glutenfree that holds the did, of every dish that is gluten free. And make a relation called gfOrders that holds the rid of every patron who has ordered a gluten free patron.
 		
 		\begin{align}
-        glutenfree(DID):= \Pi_{RID} (\sigma_{directory = \text{‘gluten-free’}}(Dish))\\
-        temp(RID) := \Pi_{RID} (glutenfree \bowtie Order)
+        glutenfree(DID) \coloneqq \Pi_{RID} (\sigma_{directory = \text{‘gluten-free’}}(Dish))\\
+        temp(RID) \coloneqq \Pi_{RID} (glutenfree \bowtie Order)
 		\end{align} 
 	Make another relation called restnames that holds the restaurant name of every restaurant that serves 'gluten-free food'. Do this by natural joining temp with Reservation. 
 	Finally cross restnames and Restaurant to get the capacity of every resteraunt serving 'gluten-free'.
 	
 	\begin{align}
-         restnames(rname):= \Pi_{rname} (temp \bowtie Reservation)\\
+         restnames(rname) \coloneqq \Pi_{rname} (temp \bowtie Reservation)\\
          \Pi_{capacity} (\sigma_{restnames.rname = Restaurant.name} (restnames \times Restaurant))
 		\end{align} 
 	
@@ -123,6 +124,82 @@ Make a relation called glutenfree that holds the did, of every dish that is glut
 Question: Report the restaurant owner for which the very earliest reservation out of all the reservations in the
 database was made. Report any ties.\\
 
+Make two relations, r1, r2 both copies of Reservation. 
+
+ 		\begin{align}
+        r1 \coloneqq \rho \text{  r1 Reservation}  \\
+        r2 \coloneqq \rho \text{  r2 Reservation}
+		\end{align}
+	
+Next create 3 relations, notbottom, bottom, and restname.
+
+'notbottom' is the rid of every reservation where there exists some other date in Reservation that is smaller than the current rid date.
+
+'bottom' is the set of smallest (earliest) dates, if there are multiple dates tied there will be multiple rid's.
+
+'restname' is a set of restaurant names that the rid's in the bottom relation visit.
+
+		\begin{align}
+         notbottom(RID) \coloneqq \Pi_{r2.RID} \; (\sigma_{r1.date < r2.date \; \wedge  \; r1.RID \neq r2.RID} (r1 \times r2))\\
+         bottom(RID)\coloneqq (\Pi_{RID} \; Reservation) - notbottom\\
+         restname(rname) \coloneqq \Pi_{rname} \;(bottom \bowtie Restaurant)
+		\end{align} 
+		
+		Finally project the owner of the restaurants where earliest reservations were made. 
+
+
+
+\item% 8
+Question: Report the PID(s) of the Patrons who have made reservations to the restaurant named ‘Red Lobster’
+on their birthday.\\
+
+Make a relation called RLpid which holds the pid and date of every reservation made to ‘Red Lobster’.
+
+Natural join RLpid with Patron, and select every row where date = birthday, and project out the pid.
+		\begin{align}
+         RLpid(PID,date) \coloneqq \Pi_{PID, date} \; (\sigma_{rname = ‘Red Lobster’} Reservation)\\
+        \Pi_{PID} \; (\sigma_{date = birthday} (RLpid \bowtie Patron))
+		\end{align} 
+
+
+\item% 9
+Question: Consider all patrons that have made reservations to at least two different restaurants. For each of
+those patrons, report their name, and the names and ratings of all of the restaurants they went to (not
+ones they rated without actually going to).\\
+
+Make two relations p1 and p2, both copies of Reservation.
+		\begin{align}
+        p1 \coloneqq \rho \text{  p1 Reservation}  \\
+        p2 \coloneqq\rho \text{  p2 Reservation}
+		\end{align}
+
+Next make 3 relations, 'atleast2res', 'names', and 'pidrate'.
+
+'atleast2res' holds the pid and restaurant name of every patron who have made reservations to at least two different restaurants.
+
+'names' holds the pid, and names of every patron in 'atleast2res'.
+
+'pidrate' holds the pid, restaurant name, and rating given by every patron in 'atleast2res'.
+
+		\begin{align}
+         atleast2res(PID,rname)\coloneqq \rho \; \text{atleast2res} \;(\Pi_{p1.PID, p1.rname} \; [\sigma (pl.PID = p2.PID \\ \wedge \; p1.RID \neq p2.RID \\ \; \wedge \; p1.rname \neq p2.rname) (r1 \times r2) ])         
+		\end{align}
+		the $\rho \; \text{atleast2res}$ at the beginning of the statement is to clarify that all the columns belong to 'atleast2res', and they will be referred to by atleast2res.PID not p1.PID, this adjustment was needed in RelaX, added just in case.
+'pidrate' and 'names' also includes this precaution.
+
+		\begin{align}
+         names(PID,fname,lname) \coloneqq \rho \; \text{names} \;(\Pi_{p1.PID, p1.rname} [\sigma_{a.PID = pt.PID} (\rho \; \text{a atleast2res} \times \rho \; \text{pt Patron})]          
+		\end{align}
+		
+		In 'pidrate' we cross 'atleast2res' and Rating, and select for every element in 'atleast2res' so we can get the rating given only if the patron has been to the restaurant. In the query I assign a to be 'atleast2res' and 'rat' to be Rating to make it shorter.
+		\begin{align}
+          pidrate(PID,rname,rating)\coloneqq \rho \; \text{pidrate} \;(\Pi(a.PID, rat.rname, rat.rating)\\	[\sigma(a.PID = rat.PID \\ \; \wedge \; a.rname = rat.name) \\ (\rho \; \text{a atleast2res} \times \rho \; \text{rat Rating})]          
+		\end{align}
+		
+		Finally cross pidrate, and names and project patron names, restaurant names, and restaurant ratings  as required.
+		\begin{align}
+               \Pi_{(n.fname, n.lname, p.rname, p.rating)} \\ [\sigma_{n.PID = p.PID} (\rho \; \text{p pidrate} \times \rho \; \text{n names})]  
+		\end{align}
 
 \end{enumerate}
 
