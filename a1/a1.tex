@@ -203,5 +203,66 @@ Next make 3 relations, 'atleast2res', 'names', and 'pidrate'.
 
 \end{enumerate}
 
+\begin{LARGE}
+\textbf{Part 2: Integrity constraints}
+\end{LARGE}
+
+\begin{enumerate}
+	\item %1
+	Question: A restaurant owner can only own one restaurant.\\
+    
+        Let $r1$ and $r2$ be two Restaurant relations
+        
+        \begin{align}
+        r1\coloneqq \rho \text{  r1 Restaurant}  \\
+        r2\coloneqq \rho \text{  r2 Restaurant}
+		\end{align}     
+		
+		A restaurant owner can only own one restaurant is the same as saying a restaurant owner cannot own more than 1 restaurant. 
+		 
+		\begin{align}
+        \sigma_{r1.owner = r2.owner \; \wedge \; r2.name \neq r1.name}\;(r1 \times r2)) = \emptyset
+		\end{align} 
+		
+	\item %2
+	Question: Patrons who did not make a reservation for a restaurant cannot review it.\\
+    
+        Let $res$ be a Reservation relation, and $rat$ be a Rating relation
+        
+        \begin{align}
+        res\coloneqq \rho \text{  res Reservation}  \\
+        rat\coloneqq \rho \text{  rat Rating}
+		\end{align}     
+		
+		Get every patron id who rated a restaurant along with the restaurant they rated and store that in temp.
+		 Check if there exists a pid, restaurant combination that does not exist in reservation, set to null.
+		\begin{align}
+        temp(PID, rname)\coloneqq \Pi_{PID,rname}\; rat\\
+        temp - (\sigma_{PID, rname} Reservation) = \emptyset
+		\end{align} 
+	\item %3
+	Question: A Patron cannot make multiple reservations in one day for a restaurant that has a capacity less than
+100.\\
+    
+        Let $res1$ and $res2$ be two Reservation relations
+        
+        \begin{align}
+        res1\coloneqq \rho \text{  res1 Reservation}  \\
+        res2\coloneqq \rho \text{  res2 Reservation}
+		\end{align}     
+		
+		Make a relation 'temp', that holds the pid and rname of every row tuple where the patron has two reservations for the same restaurant on the same day. 
+		 
+		\begin{align}
+       	temp(PID, name)\coloneqq \Pi_{res1.PID,res1.rname}\\(\sigma(res1.PID=res2.PID \\ \wedge \; res1.rname = res2.rname\\ \wedge\; res1.RID \neq res2.RID \\ \wedge \; res1.date = res2.date)(res1 \times res2))
+		\end{align} 
+		Natural join temp with Restaurant over name (restaurant name), and get which restaurants have less than 100 capacity.
+		 \begin{align}
+		 rest \coloneqq \rho \text{  rest Restaurant}\\ 
+		 \sigma_{rest.capacity < 100} (rest \bowtie temp) = \emptyset
+		 \end{align}
+		
+\end{enumerate}
+
 
 \end{document}

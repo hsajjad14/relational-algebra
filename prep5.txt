@@ -1,0 +1,136 @@
+psql csc343h-sajjadh2
+psql (9.5.17)
+Type "help" for help.
+
+csc343h-sajjadh2=> \d
+          List of relations
+ Schema |  Name   | Type  |  Owner
+--------+---------+-------+----------
+ public | blah    | table | sajjadh2
+ public | keyless | table | sajjadh2
+ public | onecol  | table | sajjadh2
+ public | r       | table | sajjadh2
+ public | s       | table | sajjadh2
+(5 rows)
+
+csc343h-sajjadh2=> \q
+dbsrv1:~$ ls
+csc343db
+dbsrv1:~$ cd csc343db
+dbsrv1:~/csc343db$ cp ~csc343h/summer/pub/world.sql .
+dbsrv1:~/csc343db$ psql csc343h-sajjadh2
+psql (9.5.17)
+
+Last login: Thu Jun  6 03:22:45 2019 from ermlon6511w-lp130-04-70-54-65-210.dsl.bell.ca
+dbsrv1:~$ psql csc343h-sajjadh2
+psql (9.5.17)
+Type "help" for help.
+
+csc343h-sajjadh2=> \d
+          List of relations
+ Schema |  Name   | Type  |  Owner
+--------+---------+-------+----------
+ public | blah    | table | sajjadh2
+ public | keyless | table | sajjadh2
+ public | onecol  | table | sajjadh2
+ public | r       | table | sajjadh2
+ public | s       | table | sajjadh2
+(5 rows)
+
+csc343h-sajjadh2=> \q
+dbsrv1:~$ ls
+csc343db
+dbsrv1:~$ cd csc343db
+dbsrv1:~/csc343db$ cp ~csc343h/summer/pub/world.sql .
+dbsrv1:~/csc343db$ psql csc343h-sajjadh2
+psql (9.5.17)
+Type "help" for help.
+
+csc343h-sajjadh2=> \i world.sql
+BEGIN
+psql:world.sql:10: NOTICE:  schema "world" does not exist, skipping
+DROP SCHEMA
+CREATE SCHEMA
+SET
+SET
+CREATE TABLE
+CREATE TABLE
+INSERT 0 239
+INSERT 0 984
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+COMMIT
+csc343h-sajjadh2=> SET search_path TO World;
+SET
+csc343h-sajjadh2=> \d
+              List of relations
+ Schema |      Name       | Type  |  Owner
+--------+-----------------+-------+----------
+ world  | country         | table | sajjadh2
+ world  | countrylanguage | table | sajjadh2
+(2 rows)
+
+csc343h-sajjadh2=> SELECT * FROM country;
+ code |                     name                     |   continent   | population
+------+----------------------------------------------+---------------+------------
+ AFG  | Afghanistan                                  | Asia          |   22720000
+ NLD  | Netherlands                                  | Europe        |   15864000
+ ANT  | Netherlands Antilles                         | North America |     217000
+ ALB  | Albania                                      | Europe        |    3401200
+ DZA  | Algeria                                      | Africa        |   31471000
+ ASM  | American Samoa                               | Oceania       |      68000
+ AND  | Andorra                                      | Europe        |      78000
+ AGO  | Angola                                       | Africa        |   12878000
+ AIA  | Anguilla                                     | North America |       8000
+ ATG  | Antigua and Barbuda                          | North America |      68000
+ ARE  | United Arab Emirates                         | Asia          |    2441000
+ ARG  | Argentina                                    | South America |   37032000
+ ARM  | Armenia                                      | Asia          |    3520000
+ ABW  | Aruba                                        | North America |     103000
+ AUS  | Australia                                    | Oceania       |   18886000
+ AZE  | Azerbaijan                                   | Asia          |    7734000
+ BHS  | Bahamas                                      | North America |     307000
+ BHR  | Bahrain                                      | Asia          |     617000
+ BGD  | Bangladesh                                   | Asia          |  129155000
+ BRB  | Barbados                                     | North America |     270000
+ BEL  | Belgium                                      | Europe        |   10239000
+ BLZ  | Belize                                       | North America |     241000
+ BEN  | Benin                                        | Africa        |    6097000
+ BMU  | Bermuda                                      | North America |      65000
+ BTN  | Bhutan                                       | Asia          |    2124000
+ BOL  | Bolivia                                      | South America |    8329000
+ BIH  | Bosnia and Herzegovina                       | Europe        |    3972000
+:
+csc343h-sajjadh2=> vim
+csc343h-sajjadh2-> ;
+ERROR:  syntax error at or near "vim"
+LINE 1: vim
+        ^
+csc343h-sajjadh2=>
+csc343h-sajjadh2=> \q
+dbsrv1:~/csc343db$ vim
+dbsrv1:~/csc343db$ vim sample_query.sql
+dbsrv1:~/csc343db$ psql csc343h-sajjadh2
+psql (9.5.17)
+Type "help" for help.
+
+csc343h-sajjadh2=> \i sample_query.sql
+SET
+ countrycode | countrylanguage  | isofficial | percentage
+-------------+------------------+------------+------------
+ CAN         | English          | t          |       60.4
+ CAN         | French           | t          |       23.4
+ CAN         | Chinese          | f          |        2.5
+ CAN         | Italian          | f          |        1.7
+ CAN         | German           | f          |        1.6
+ CAN         | Polish           | f          |        0.7
+ CAN         | Spanish          | f          |        0.7
+ CAN         | Portuguese       | f          |        0.7
+ CAN         | Punjabi          | f          |        0.7
+ CAN         | Ukrainian        | f          |        0.6
+ CAN         | Dutch            | f          |        0.5
+ CAN         | Eskimo Languages | f          |        0.1
+(12 rows)
+
+csc343h-sajjadh2=>
