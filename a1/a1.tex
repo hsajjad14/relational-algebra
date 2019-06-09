@@ -67,7 +67,7 @@ are ties report all of them.\\
         
         Make an pidsOrdered relation that holds the pid of every patron who has made an order by natural joining Order with Reservation. Then subtract pidsOrdered from the set of all Reservation pids, this will give all the patron pids who have a reservation but have not ordered anything.
         \begin{align}
-        pidsOrdered(RID)\coloneqq \Pi_{RID}\;(Order \bowtie Reservation)\\
+        pidsOrdered(PID)\coloneqq \Pi_{PID}\;(Order \bowtie Reservation)\\
         (\Pi_{PID} Reservation) - pidsOrdered
 		\end{align} 
        
@@ -93,14 +93,7 @@ And a relation called mp that holds the did of a dish called ’Margherita Pizza
 \item % 5 
 Question: Report the owner of the restaurant with the highest average rating. If there are ties, report all of them.\\
 
-We can't find average in relational algebra.
-
-Let r1 and r2 be two instances of Rating relation.
-         \begin{align}
-        r1 \coloneqq \rho \text{  r1 Rating}  \\
-        r2\coloneqq \rho \text{  r2 Rating}
-		\end{align}     
-		...
+We can't find average in relational algebra. Need to use aggregate sql functions.
 
 \item % 6
 Question: Report the capacities of the restaurants from which patrons have so far only ordered foods with a
@@ -109,7 +102,7 @@ Question: Report the capacities of the restaurants from which patrons have so fa
 Make a relation called glutenfree that holds the did, of every dish that is gluten free. And make a relation called gfOrders that holds the rid of every patron who has ordered a gluten free patron.
 		
 		\begin{align}
-        glutenfree(DID) \coloneqq \Pi_{RID} (\sigma_{directory = \text{‘gluten-free’}}(Dish))\\
+        glutenfree(DID) \coloneqq \Pi_{DID} (\sigma_{directory = \text{‘gluten-free’}}(Dish))\\
         temp(RID) \coloneqq \Pi_{RID} (glutenfree \bowtie Order)
 		\end{align} 
 	Make another relation called restnames that holds the restaurant name of every restaurant that serves 'gluten-free food'. Do this by natural joining temp with Reservation. 
@@ -148,6 +141,9 @@ Next create 3 relations, notbottom, bottom, and restname.
 		Finally project the owner of the restaurants where earliest reservations were made. 
 
 
+		\begin{align}
+        \Pi_{owner} (\sigma_{rname=name} (restname \times Restaurant))
+		\end{align} 
 
 \item% 8
 Question: Report the PID(s) of the Patrons who have made reservations to the restaurant named ‘Red Lobster’
@@ -182,13 +178,13 @@ Next make 3 relations, 'atleast2res', 'names', and 'pidrate'.
 'pidrate' holds the pid, restaurant name, and rating given by every patron in 'atleast2res'.
 
 		\begin{align}
-         atleast2res(PID,rname)\coloneqq \rho \; \text{atleast2res} \;(\Pi_{p1.PID, p1.rname} \; [\sigma (pl.PID = p2.PID \\ \wedge \; p1.RID \neq p2.RID \\ \; \wedge \; p1.rname \neq p2.rname) (r1 \times r2) ])         
+         atleast2res(PID,rname)\coloneqq \rho \; \text{atleast2res} \;(\Pi_{p1.PID, p1.rname} \; [\sigma (p1.PID = p2.PID \\ \wedge \; p1.RID \neq p2.RID \\ \; \wedge \; p1.rname \neq p2.rname) (p1 \times p2) ])         
 		\end{align}
 		the $\rho \; \text{atleast2res}$ at the beginning of the statement is to clarify that all the columns belong to 'atleast2res', and they will be referred to by atleast2res.PID not p1.PID, this adjustment was needed in RelaX, added just in case.
 'pidrate' and 'names' also includes this precaution.
 
 		\begin{align}
-         names(PID,fname,lname) \coloneqq \rho \; \text{names} \;(\Pi_{p1.PID, p1.rname} [\sigma_{a.PID = pt.PID} (\rho \; \text{a atleast2res} \times \rho \; \text{pt Patron})]          
+         names(PID,fname,lname) \coloneqq \rho \; \text{names} \;(\Pi_{a.PID, pt.fname, pt.lname} [\sigma_{a.PID = pt.PID} (\rho \; \text{a atleast2res} \times \rho \; \text{pt Patron})]          
 		\end{align}
 		
 		In 'pidrate' we cross 'atleast2res' and Rating, and select for every element in 'atleast2res' so we can get the rating given only if the patron has been to the restaurant. In the query I assign a to be 'atleast2res' and 'rat' to be Rating to make it shorter.
@@ -201,6 +197,32 @@ Next make 3 relations, 'atleast2res', 'names', and 'pidrate'.
                \Pi_{(n.fname, n.lname, p.rname, p.rating)} \\ [\sigma_{n.PID = p.PID} (\rho \; \text{p pidrate} \times \rho \; \text{n names})]  
 		\end{align}
 
+\item %10
+	Question: Report the name of all Restaurants that had reservations made on every day that someone made a
+reservation at the restaurant named ‘Pickle Barrel’.
+\\
+PickleBarrelDates stores a column of all the dates on which reservations were made to the resterunt named Pickel Barrel.
+     	\begin{align}
+        PickleBarrelDates(date)\coloneqq \Pi_{date} (\sigma_{rname='Pickle Barrel'} (Reservation))
+        \end{align}
+        AllReservations holds all the resteraunt names in the rname column and the respective dates in the date column on which the reservation at the respective. resteraunt was made.
+        \begin{align}
+        AllReservations(rname,date) \coloneqq \Pi_{rname, date} (Reservation)
+        \end{align}
+        ShouldHaveBeen stores tuples of all the possible combinations that could have occurred.
+        \begin{align}
+        ShouldHaveBeen(rname,date) \coloneqq (\Pi_{rname} AllReservations) \times PickleBarrelDates 
+        \end{align}
+        Subtracting AllReservations which contains the tuple of all the restaurants and the dates on which reservations were made at these restaurants from the ShouldHaveBeen table which contains the tuple of all possible combinations of restaurants and the dates for the Pickle Barrel resteraunts will give us a table named WereNotAlways whoch contains the resteraunt names whose reservation dates did not match every date of reservation for Pickle Barrel. This includes the failures.
+        \begin{align}
+        WereNotAlways(rname,date) \coloneqq ShouldHaveBeen-AllReservations 
+        \end{align}
+        Subtracting  the rname column of WereNotAlways table which contains the restaurants which failed the criteria from the rname column of AllReservations which contains all the resteraunts at which reservations were made will give us the restaurants that pass the criteria i.e. which had reservations made on every day that someone made reservation at Pickle Barrel.
+        \begin{align}
+        WereAlways(rname)  \coloneqq (\Pi_{rname} AllReservations)- (\Pi_{rname} WereNotAlways) \\
+        WereAlways
+		\end{align}
+        
 \end{enumerate}
 
 \begin{LARGE}
