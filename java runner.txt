@@ -1,0 +1,1 @@
+java -cp /local/packages/jdbc-postgresql/postgresql-42.2.4.jar: Example

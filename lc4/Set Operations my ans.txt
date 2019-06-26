@@ -1,0 +1,32 @@
+1. a) m+n
+b)min(m,n)
+c)n-m
+
+2.
+(select term
+from offering 
+where instructor = 'Jepson')
+intersect all
+(select term
+from offering 
+where instructor = 'Suzuki');
+
+3.
+(select sID
+from took
+where grade >= 85)
+Union
+(select sid
+from Took, Offering
+where took.oid = Offering.oid
+and Offering.instructor = 'Atwood'
+and took.grade >= 50);
+
+4.
+(select term
+from Offering)
+Except
+(select term
+from Offering
+where Offering.dept = 'csc' and Offering.cnum = 369)
+

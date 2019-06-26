@@ -1,0 +1,5 @@
+select country.code, count(countrylanguage.countrylanguage)
+from country, countrylanguage
+group by country.code, countrylanguage.countrycode
+having country.code = countrylanguage.countrycode 
+and count(countrylanguage.countrylanguage) > (select count(countrylanguage.countrylanguage) from country, countrylanguage where country.code = countrylanguage.countrycode and country.code = 'MEX');

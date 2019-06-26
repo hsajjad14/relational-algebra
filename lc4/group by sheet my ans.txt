@@ -1,0 +1,42 @@
+1.
+select oid, avg(grade), min(grade), max(grade)
+from Took
+group by oid;
+
+2. top right, bottom right
+
+3.
+select sid, min(grade) from Took
+group by sid
+having avg(grade) > 80;
+
+4.
+
+select s.sid, s.surname, avg(t.grade)
+from student s, took t
+where s.sid = t.sid
+group by s.sid, s.surname
+having count(t.grade) > 10;	
+
+5.
+select sid, avg(grade)
+from took
+where grade >= 50
+csc343h-sajjadh2-> group by sid
+csc343h-sajjadh2-> having count(grade) >= 10;
+
+6.
+
+create view TenCourses as
+select sid, avg(grade)
+from took
+where grade >= 50 group by sid
+having count(grade) >= 10;
+
+
+select t.sid, avg(t.grade)
+from tencourses tc, took t
+where tc.sid = t.sid
+group by t.sid;
+
+7. top left, top right

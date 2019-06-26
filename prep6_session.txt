@@ -1,0 +1,29 @@
+csc343h-sajjadh2=>\i world_empty.sql
+csc343h-sajjadh2=> insert into country values
+csc343h-sajjadh2-> ('BOR', 'Borduria', 'Pangaea', 1000), ('CAG', 'Cagliostro', 'Pangaea', 250),
+csc343h-sajjadh2-> ('MAR', 'Qumar', 'Pangaea', 3380);
+INSERT 0 3
+csc343h-sajjadh2=> insert into countrylanguage values
+csc343h-sajjadh2-> ('BOR','English',NULL,NULL ), ('BOR','Italian',NULL,NULL ), ('BOR','Klingon',NULL,NULL ) ;
+INSERT 0 3
+csc343h-sajjadh2=> delete from country
+csc343h-sajjadh2-> where population < 300;
+DELETE 1
+csc343h-sajjadh2=> update country
+csc343h-sajjadh2-> set name = 'Luna'
+csc343h-sajjadh2-> where code = 'BOR';
+UPDATE 1
+csc343h-sajjadh2=> select * from country;
+ code | name  | continent | population
+------+-------+-----------+------------
+ MAR  | Qumar | Pangaea   |       3380
+ BOR  | Luna  | Pangaea   |       1000
+(2 rows)
+
+csc343h-sajjadh2=> select * from countrylanguage;
+ countrycode | countrylanguage | isofficial | percentage
+-------------+-----------------+------------+------------
+ BOR         | English         |            |
+ BOR         | Italian         |            |
+ BOR         | Klingon         |            |
+(3 rows)

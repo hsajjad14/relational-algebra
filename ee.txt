@@ -1,0 +1,7 @@
+select c1.countrycode, max(c1.percentage)
+from countrylanguage c1
+group by c1.countrycode;
+----------------
+select c1.countrycode, max(c1.percentage)
+from countrylanguage c1
+group by c1.countrycode;
