@@ -1,0 +1,18 @@
+1.
+a) legal
+b) illegal
+c) legal
+
+2. if no one at the same campus has the same last name it will 
+produce the same answer
+
+3.
+select sid, count(dept)
+from took natural left join offering
+group by sid;
+
+4.
+select * from one natural right join two;
+
+5. 
+select * from one natural left join two;
