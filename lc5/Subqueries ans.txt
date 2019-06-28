@@ -1,0 +1,38 @@
+1.
+get every student the course they took and their grade in a course taught
+by horton.
+
+2.
+get every student where their gpa is greater than the gpa 
+of the student with sid = 99999
+
+3.
+select every student the course they took and their grade 
+who got greater than 80 in the offering and 
+lakemeyer took this course
+
+4.
+a)
+it gets every a which is in the collumn where it's b also exists in S
+
+b)
+select a from R, S where R.b = S.b;
+
+5.
+select every instructor who have only offered one course.
+
+6.
+select every offering which is not a csc course.
+
+7.
+create view counts as
+select dept||cnum as course, instructor, count(dept) as num
+from offering
+group by course, instructor;
+
+select course, instructor, num
+from counts c1
+where num >= ALL 
+(select num
+from counts c2 
+where c1.course = c2.course);

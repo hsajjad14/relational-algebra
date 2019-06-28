@@ -7,7 +7,7 @@ c) legal
 produce the same answer
 
 3.
-select sid, count(dept)
+select sid, count(distinct dept)
 from took natural left join offering
 group by sid;
 
