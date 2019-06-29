@@ -1,0 +1,10 @@
+1. 7
+2. 3
+3. mid
+4. 4, Ford, American
+5. yes, 1
+6. yes
+
+7. 5, 9, joseph joestar
+8. no
+9. yes

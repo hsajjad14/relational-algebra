@@ -36,3 +36,21 @@ where num >= ALL
 (select num
 from counts c2 
 where c1.course = c2.course);
+
+8.
+select surname, firstname
+from student
+where EXISTS 
+(select * 
+from Offering o, took t
+where o.oid = t.oid and t.sid = student.sid
+and o.dept <> 'CSC'
+);
+
+9.
+select distinct o.instructor
+from offering o
+where EXISTS
+(select * 
+from took t
+where t.oid = o.oid and t.grade = 100);
