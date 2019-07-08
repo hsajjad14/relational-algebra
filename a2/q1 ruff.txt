@@ -1,0 +1,52 @@
+election winner (party name) of every election in canada 
+
+select p.name, e1.id, c.name
+from election_result e1, party p, country c where p.country_id = c.id and c.name = 'Canada' and p.id = party_id and votes >= All (
+select votes from election_result e2 where e1.election_id = e2.election_id);
+
+partys and # times they won an election in canada
+
+select p.name, count(*)
+from election_result e1, party p, country c where p.country_id = c.id and c.name = 'Canada' and p.id = party_id and votes >= All (
+select votes from election_result e2 where e1.election_id = e2.election_id)
+group by p.name;
+
+# includes every party in canada
+select p.name, count(p.name)
+from country c, party p left join (select p.name as name, count(*)
+from election_result e1, party p, country c where p.country_id = c.id and c.name = 'Canada' and p.id = party_id and votes >= All (
+select votes from election_result e2 where e1.election_id = e2.election_id)
+group by p.name) temp on temp.name = p.name where p.country_id = c.id and c.name = 'Canada'
+group by p.name; 
+
+
+
+num parties in canada = 22
+create view num as (
+select count(*)
+from country c, party p where p.country_id = c.id and c.name = 'Canada' 
+)
+
+sum = 23
+create view summ as (
+select sum(won) 
+from (select count(*) as won
+from election_result e1, party p, country c where p.country_id = c.id and c.name = 'Canada' and p.id = party_id and votes >= All (
+select votes from election_result e2 where e1.election_id = e2.election_id)
+group by p.name
+) temp
+)
+
+
+select name, won
+from (
+select p.name as name, count(*) as won
+from election_result e1, party p, country c where p.country_id = c.id and c.name = 'Canada' and p.id = party_id and votes >= All (
+select votes from election_result e2 where e1.election_id = e2.election_id)
+group by p.name) temp
+group by name, won
+having won > (select sum from summ)*3/(select count from num);
+
+
+
+

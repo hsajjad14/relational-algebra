@@ -1,0 +1,36 @@
+
+# country, election id, date electorate (num ppl), and num ppl voted, and ratio of every election
+
+select e.id, c.name, e.e_date, e.electorate, date_part('year', e.e_date) as year,
+e.votes_valid, round(cast(e.votes_valid as decimal) / cast(e.electorate as decimal), 2) as ratio
+from election e join country c on e.country_id = c.id join
+election e2 on e2.country_id = c.id where e2.id <> e.id and date_part('year', e2.e_date) = date_part('year', e.e_date)
+order by year;
+
+
+#countries with more than 1 election in a year
+
+select e.id, c.name, e.e_date, e.electorate, date_part('year', e.e_date) as year,
+e.votes_valid, round(cast(e.votes_valid as decimal) / cast(e.electorate as decimal), 2) as ratio
+from election e join country c on e.country_id = c.id join
+election e2 on e2.country_id = c.id where e2.id <> e.id and date_part('year', e2.e_date) = date_part('year', e.e_date)
+order by year;
+
+# avg election ratio for every year in france
+
+select c.name, date_part('year', e.e_date) as year,
+avg(round(cast(e.votes_valid as decimal) / cast(e.electorate as decimal), 2)) as ratio
+from election e join country c on e.country_id = c.id where c.name = 'France'
+group by c.name, year
+order by year;
+
+# same but for every country
+# year is between 2001 and 2016
+
+select c.name, date_part('year', e.e_date) as year,
+round(avg(cast(e.votes_valid as decimal) / cast(e.electorate as decimal)), 3) as ratio
+from election e join country c on e.country_id = c.id
+where date_part('year', e.e_date) >= 2001 and date_part('year', e.e_date) <= 2016
+group by c.name, year
+having avg(cast(e.votes_valid as decimal) / cast(e.electorate as decimal)) is not null
+order by c.name, year desc;

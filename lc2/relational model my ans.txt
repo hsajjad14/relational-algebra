@@ -1,0 +1,16 @@
+1.d 
+2.b
+3.a) 
+in movies:
+8, lord of the rings, joseph joestar, 1000
+in roles:
+not 8 = mid
+
+b)
+a movie with an mid that does not exist in roles[mid]
+
+c)
+no, because roles[mid] is not the key for roles
+
+4.
+b)
