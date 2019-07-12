@@ -60,8 +60,49 @@ redoing
 =======================================================
 
 select e.id, e.votes_cast, e.electorate,  c.name,
-round(cast(e.votes_cast as decimal) / cast(e.electorate as decimal), 6) --
+round(cast(e.votes_cast as decimal) / cast(e.electorate as decimal), 6) as ratio, --selecting ratio
 date_part('year', e.e_date) as year -- selection
 from election e join country c on e.country_id = c.id
 where c.name = 'Germany' and date_part('year', e.e_date) >= 2001 and date_part('year', e.e_date) <= 2016
 order by year desc;
+
+-- finding ave for every 2001- 2016 specific country
+select c.name,
+date_part('year', e.e_date) as year, -- selection year
+round(avg(cast(e.votes_cast as decimal) / cast(e.electorate as decimal)),6) as ratio --selecting ratio
+from election e join country c on e.country_id = c.id
+where c.name = 'United Kingdom' and date_part('year', e.e_date) >= 2001 and date_part('year', e.e_date) <= 2016
+group by c.name, year
+order by year desc;
+
+-- finding ave from 2001- 2016 every country
+select c.name,
+date_part('year', e.e_date) as year, -- selection year
+round(avg(cast(e.votes_cast as decimal) / cast(e.electorate as decimal)),6) as ratio --selecting ratio
+from election e join country c on e.country_id = c.id
+where date_part('year', e.e_date) >= 2001 and date_part('year', e.e_date) <= 2016
+group by c.name, year
+order by c.name desc, year desc;
+
+-- final answer ?
+create view final as
+select c.name as countryName,
+date_part('year', e.e_date) as year, -- selection year
+round(avg(cast(e.votes_cast as decimal) / cast(e.electorate as decimal)),6) as participationRatio --selecting ratio
+from election e join country c on e.country_id = c.id
+where date_part('year', e.e_date) >= 2001 and date_part('year', e.e_date) <= 2016
+group by c.name, year;
+
+create view q2 as
+select c.name as countryName,
+date_part('year', e.e_date) as year, -- selection year
+round(avg(cast(e.votes_cast as decimal) / cast(e.electorate as decimal)),6) as participationRatio --selecting ratio
+from election e join country c on e.country_id = c.id
+where date_part('year', e.e_date) >= 2001 and date_part('year', e.e_date) <= 2016
+group by c.name, year;
+
+
+create view notNonDecreasing as
+select distinct q21.countryName
+from q2 q21 join q2 q22 on q21.countryName = q22.countryName
+where q21.year < q22.year and q21.participationRatio > q22.participationRatio;
