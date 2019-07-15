@@ -1,0 +1,27 @@
+create view intro as
+  select e.e_type as type, c.name, e.id as elecid, cab.id as cabid, e.e_date as elecdate, cab.start_date as cabstartdate
+  from parlgov.election e join parlgov.country c on e.country_id = c.id
+  join parlgov.cabinet cab on cab.country_id = c.id and cab.start_date > e.e_date;
+
+create view ep as
+select i.type as type, i.name as name, i.elecid as elecid, i.cabid as cabid,
+i.elecdate as elecdate, i.cabstartdate as cabstartdate, e.e_date as nxtelectiondate
+from intro i join parlgov.election e on i.elecid = e.previous_ep_election_id
+and i.cabstartdate < e.e_date
+order by i.cabstartdate desc;
+
+create view pe as
+select i.type as type, i.name as name, i.elecid as elecid, i.cabid as cabid,
+i.elecdate as elecdate, i.cabstartdate as cabstartdate, e.e_date as nxtelectiondate
+from intro i join parlgov.election e on i.elecid = e.previous_parliament_election_id
+and i.cabstartdate < e.e_date
+order by i.cabstartdate desc;
+
+create view temp as
+  (select type, elecid, cabid,cabstartdate,name
+  from ep) Union
+  (select type, elecid, cabid,cabstartdate,name
+  from pe);
+
+select * from temp
+where name = 'United Kingdom' order by cabstartdate desc

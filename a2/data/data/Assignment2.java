@@ -69,78 +69,22 @@ public class Assignment2 extends JDBCSubmission {
         ElectionCabinetResult result = null;
         try{
         // Implement this method!
-          String testinggg = "SET search_path TO parlgov";
-          String nextEPelectionview = "create view nextEPelection as "+
-            " select e1.id, e2.e_date as enddate "+
-            " from parlgov.election e1, parlgov.election e2 "+
-            " where e2.previous_ep_election_id = e1.id";
 
-          String nextparlelectionview = "create view nextparlelection as "+
-          "select e1.id, e2.e_date as enddate "+
-          "from parlgov.election e1, parlgov.election e2 "+
-          "where e2.previous_parliament_election_id = e1.id";
-
-          String almostEPelview = "create view almostEPel as "+
-          "select c.name, cab.id as cabid, cab.start_date as cabstartdate, "+
-          "e.e_date as elecdate, e.id as elecid, "+
-          "npe.enddate as nextelectiondate "+
-          "from parlgov.country c join parlgov.election e on e.country_id = c.id "+
-          "join parlgov.cabinet cab on cab.country_id = c.id and cab.start_date >= e.e_date "+
-          "join nextEPelection npe on e.id = npe.id and cab.start_date <= npe.enddate ";
-
-          String almostparlelview = "create view almostparlel as "+
-          "select c.name, cab.id as cabid, cab.start_date as cabstartdate, "+
-          "e.e_date as elecdate, e.id as elecid, "+
-          "npe.enddate as nextelectiondate "+
-          "from parlgov.country c join parlgov.election e on e.country_id = c.id "+
-          "join parlgov.cabinet cab on cab.country_id = c.id and cab.start_date >= e.e_date "+
-          "join nextparlelection npe on e.id = npe.id and cab.start_date <= npe.enddate ";
-
-          String temp = "create view temp as "+
-          " (select elecid, cabid, name, elecdate "+
-          " from almostparlel) "+
-          " Union "+
-          " (select elecid, cabid, name, elecdate "+
-          " from almostEPel)";
-
-          String queryString = "select elecid, cabid, elecdate from temp "+
-           "where name = ? "+
-           "order by elecdate desc";
+          String querry = "select e1.id, e1.e_type, c1.name, cb.id as cabid , cb.start_date ,e1.e_date as eldate "+
+          " from parlgov.election e1 join parlgov.country c1 on e1.country_id = c1.id "+
+          " full join parlgov.election e2 on e2.e_type = e1.e_type "+
+          " and e2.previous_parliament_election_id = e1.id "+
+          " full join parlgov.cabinet cb on cb.country_id = c1.id and date_part('year',cb.start_date) >= date_part('year',e1.e_date) "+
+          " and cb.election_id = e1.id  "+
+          " where c1.name = ?  "+
+          " order by e1.e_date desc";
 
 
+          PreparedStatement ps3 = connection.prepareStatement(querry);
+          ps3.setString(1, countryName);
 
-          // String testddl = "select id, name from parlgov.cabinet";
-          // PreparedStatement nps = conn.prepareStatement(testddl);
-          // System.out.println("ll");
-          // rs = nps.executeQuery();
-          // System.out.println("aa");
-          //
-          // while (rs.next()){
-          //     String name = rs.getString("name");
-          //     Integer id = rs.getInt("id");
-          //     System.out.print(name);
-          //     System.out.print(" ");
-          //     System.out.println(id);
-          // }
-          PreparedStatement ps1 = connection.prepareStatement(nextEPelectionview);
-          ps1.executeUpdate();
-          //while (rs.next()){}
 
-          PreparedStatement ps2 = connection.prepareStatement(nextparlelectionview);
-          ps2.executeUpdate();
-
-          PreparedStatement ps3 = connection.prepareStatement(almostEPelview);
-          ps3.executeUpdate();
-
-          PreparedStatement ps4 = connection.prepareStatement(almostparlelview);
-          ps4.executeUpdate();
-
-          PreparedStatement ps5 = connection.prepareStatement(temp);
-          ps5.executeUpdate();
-
-          PreparedStatement ps6 = connection.prepareStatement(queryString);
-          ps6.setString(1,countryName);
-          this.rs = ps6.executeQuery();
+          this.rs = ps3.executeQuery();
 
 
 
@@ -148,26 +92,24 @@ public class Assignment2 extends JDBCSubmission {
           List<Integer> cabinetsids = new ArrayList<Integer>();
 
           while(this.rs.next()){
-            electionids.add(this.rs.getInt("elecid"));
-            cabinetsids.add(this.rs.getInt("cabid"));
-            System.out.print("elecid: " + Integer.toString((this.rs.getInt("elecid"))));
-            System.out.println(" cabid: " + Integer.toString((this.rs.getInt("cabid"))));
-            java.sql.Date date = rs.getDate("elecdate");
-            System.out.println(date);
+            electionids.add(this.rs.getInt("id"));
+            int cabid = this.rs.getInt("cabid");
+            if (!this.rs.wasNull()){
+              cabinetsids.add(cabid);
+            }
+
           }
 
-          String drop1 = "drop view nextparlelection cascade";
-          String drop2 = "drop view nextepelection cascade";
-          PreparedStatement ps7 = connection.prepareStatement(drop1);
-          ps7.executeUpdate();
-          PreparedStatement ps8 = connection.prepareStatement(drop2);
-          ps8.executeUpdate();
+
 
           result = new ElectionCabinetResult(electionids, cabinetsids);
-        }catch(SQLException e){
 
+        }catch(SQLException e){
           System.out.println("SQLException: "+e.getMessage());
           e.printStackTrace();
+
+
+
         }
         return result;
     }
@@ -176,35 +118,42 @@ public class Assignment2 extends JDBCSubmission {
     public List<Integer> findSimilarPoliticians(Integer politicianName, Float threshold) {
         // Implement this method!
         List<Integer> ret = new ArrayList<Integer>();
-        String querry = "select p.description as desc1, p2.id as id2, "+
-        "p2.description as desc1 from politician_president p, politician_president p2 "+
-        "where p.id < p2.id and p.id = ?";
+        String querry ="select p.id as id1, p2.id as id2, "+
+         "p.description as desc1, p2.description as desc2, "+
+         "p.comment as comm1,  p2.comment as comm2 "+
+        "from parlgov.politician_president p, parlgov.politician_president p2 " +
+        "where p.id <> p2.id and p.id = ? ";
+
+
         double similar = 0;
+        double similar2 = 0;
 
         try{
+
           PreparedStatement prepst = this.connection.prepareStatement(querry);
+          prepst.setInt(1,politicianName);
           this.rs = prepst.executeQuery();
-          boolean pass = false;
+
+
           while (rs.next()){
-            pass = false;
             Integer id2 = rs.getInt("id2");
             String desc1 = rs.getString("desc1");
-            if (rs.wasNull() || desc1 == null){
-              pass = true;
-            }
             String desc2 = rs.getString("desc2");
-            if (rs.wasNull() || desc2 == null){
-              pass = true;
+            String comm1 = rs.getString("comm1");
+            String comm2 = rs.getString("comm2");
+
+            String p1 = desc1 + " " + comm1;
+            String p2 = desc2 + " " + comm2;
+            similar = similarity(p1, p2);
+            if ((float)similar >= threshold){
+              ret.add(id2);
             }
-            if (pass == true){
-              similar = similarity(desc1, desc2);
-              if ((float)similar >= threshold){
-                ret.add(id2);
-              }
-            }
+
+
           }
         }catch(SQLException e){
-
+          System.out.println("SQLException: "+e.getMessage());
+          e.printStackTrace();
         }
 
 
@@ -213,15 +162,17 @@ public class Assignment2 extends JDBCSubmission {
     }
 
     public static void main(String[] args) {
-        // You can put testing code in here. It will not affect our autotester.
+        //You can put testing code in here. It will not affect our autotester.
         System.out.println("Hello");
         try {
           Assignment2 test = new Assignment2();
           boolean ret = test.connectDB("jdbc:postgresql://localhost:5432/csc343h-sajjadh2", "sajjadh2", "Uchiha@575318" );
           System.out.println(ret);
 
-          ElectionCabinetResult temp = test.electionSequence("United Kingdom");
+          ElectionCabinetResult temp = test.electionSequence("Germany");
           //float f = 0.35;
+          System.out.println();
+          System.out.println(temp.toString());
           List<Integer> t2 = test.findSimilarPoliticians(9,(float)0.25);
           for(Integer i: t2){
             System.out.println(i);
