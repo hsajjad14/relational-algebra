@@ -1,0 +1,86 @@
+
+\documentclass{article}
+
+% Packages
+\usepackage{amsmath, amssymb}   % math formatting & symbols
+\usepackage{graphicx}           % insert graphics
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+%\usepackage{eulervm, bookman}   % fonts for math & symbols
+\usepackage{mathtools}
+\usepackage{fullpage}          % fullpage margins
+
+\begin{document}
+% Title 
+\title{CSC343 Prep9}
+\author{Haider Sajjad}
+\maketitle
+
+
+
+
+
+
+\begin{enumerate}
+    \item % 1 
+    a) \{B, D, E\} \\ \\
+    b) \{A, B, C, D, E, F\} \\ \\
+	c) \{A, D, E, F\} \\ \\
+	d) \{B, C, D, E\} \\ \\
+    e) \{A, B, C, D, E\} \\ \\
+      
+    \item % 2 
+    a) no, closure of B, $B^{+}$ is \{B, D, E\}, A is not in the set. \\ \\
+    b) yes, closure of CF, $CF^{+}$ is \{A, B, C, D, E, F\}, E is in the set. \\ \\
+	c) no, closure of DF, $DF^{+}$ is \{A, D, E, F\}, B is not in the set. \\ \\
+	d) no, closure of BD, $BD^{+}$ is \{B, D, E\}, C is not in the set. \\ \\
+    e) yes, closure of BFC, $BFC^{+}$ is \{A, B, C, D, E, F\} , A is in the set. \\ \\
+       
+    \item % 3
+       \textbf{A}BD \\
+        $A^{+}$ = \{A,D,C,E\},\quad \quad FDs = A $\rightarrow$ D 
+       	\\ \\ 
+       	A\textbf{B}D \\
+        $B^{+}$ = \{A,B,C,D,E\},\quad \quad FDs = B $\rightarrow$ A, B $\rightarrow$ D
+       	\\ \\ 
+       	AB\textbf{D} \\
+        $D^{+}$ = \{A,C,D,E\},\quad \quad FDs = D $\rightarrow$ A 
+       	\\ \\ 
+       	A\textbf{BD} \\
+        $BD^{+}$ = \{A,B,C,D,E\},\quad \quad FDs = NONE
+       	\\ \\ 
+       	\textbf{A}B\textbf{D} \\
+        $AD^{+}$ = \{A, C, D, E\},\quad \quad FDs = NONE
+       	\\ \\ 
+       	\textbf{AB}D \\
+        $AB^{+}$ = \{A,B,C,D,E\},\quad \quad FDs = NONE
+       	\\ \\ 
+       	\textbf{ABD} \\
+        $ABD^{+}$ = \{A,B,C,D,E\},\quad \quad FDs = NONE
+       	\\ \\ 
+       	
+       	Projection of S on ABD is: A $\rightarrow$ D , B $\rightarrow$ A, B $\rightarrow$ D, D $\rightarrow$ A \\ \\
+       	
+       	
+    \item % 4\\
+    		
+    		An instance of R is below. The '2' that is bold and highlighted is the redundant data, because we already had the in the first row F(5) $\rightarrow$ D(2)
+    		
+    		\begin{table}[h!]
+				\begin{tabular}{llllll}
+ 					\textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E} & \textbf{F}\\
+						3 & 1 & 1 & 2                                                 & 4 & 5 \\
+						4 & 7 & 2 & 3                                                 & 5 & 6 \\
+						5 & 6 & 4 & {\ul \textit{\textbf{2}}} & 8 & 5
+				\end{tabular}
+				\end{table}
+    
+    
+        
+\end{enumerate}
+
+		
+
+
+\end{document}

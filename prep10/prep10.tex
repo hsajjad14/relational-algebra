@@ -1,0 +1,76 @@
+
+\documentclass{article}
+
+% Packages
+\usepackage{amsmath, amssymb}   % math formatting & symbols
+\usepackage{graphicx}           % insert graphics
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+%\usepackage{eulervm, bookman}   % fonts for math & symbols
+\usepackage{mathtools}
+\usepackage{fullpage}          % fullpage margins
+
+\begin{document}
+% Title 
+\title{CSC343 Prep10}
+\author{Haider Sajjad}
+\maketitle
+
+
+
+
+
+
+\begin{enumerate}
+    \item % 1a
+    a)
+    B $\rightarrow$ EF, F $\rightarrow$ D \\\\
+    b) 
+    \begin{table}[htp]
+\begin{tabular}{llllll}
+A & B & C & D & E & F\\
+3 & 1 & 1 & \textbf{2}       & 1 & \textbf{2}       \\
+4 & 2 & 3 & {\ul \textbf{2}} & 3 & {\ul \textbf{2}}
+\end{tabular}
+\end{table}
+\\
+The redundancy occurs on the second line where 
+we have F(2) $\rightarrow$ D(2) occuring twice.
+\\\\
+c) R1(BEF), R2(ABCD)
+\\\\
+d) R2's FDs:
+\\
+$A^{+}$ = ABCDEF :
+A $\rightarrow$ BCD \\
+$B^{+}$ = BEFD : 
+B $\rightarrow$ D \\
+$CD^{+}$ = ABCDEF : 
+CD $\rightarrow$ ABD \\\\
+R1's FDs:
+B $\rightarrow$ EF\\
+\\
+e) Both are in BCNF, there does not exist a FD in either relation that violates that relation.
+\\
+\item %2
+a) CB is the only key.\\\\
+b) I know that nothing else is a key because the closure of any combination of attributes without C or B cannot contain every attribute. So it won't be a key.\\\\
+c) Final schema: R1(ADE), R2(ABC)\\
+\\
+Start by creating a relation for the union of every FD: R1(ADE), R2(AC), R3(AE) \\
+Since there must exist a relation which includes the superkey, create R4(ABC).\\
+So relation is: R1(ADE), R2(AC), R3(AE), R4(ABC)\\ \\
+Now, attributes of R2 are in R4 and attributes of R3 are in R1, so we don't need them. Leaving us with: \\
+R1(ADE), R2(ABC)
+    
+    
+    
+        
+\end{enumerate}
+
+		
+
+
+\end{document}
