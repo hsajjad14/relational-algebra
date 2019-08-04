@@ -1,0 +1,160 @@
+
+\documentclass{article}
+
+% Packages
+\usepackage{amsmath, amssymb}   % math formatting & symbols
+\usepackage{graphicx}           % insert graphics
+%\usepackage{eulervm, bookman}   % fonts for math & symbols
+\usepackage{mathtools}
+\usepackage{fullpage}          % fullpage margins
+
+\begin{document}
+% Title 
+\title{CSC343 A3}
+\author{Haider Sajjad, Muskan Patpatia}
+\maketitle
+
+\begin{LARGE}
+\textbf{Database Design and SQL DDL}
+\end{LARGE}
+
+
+
+\begin{enumerate}
+    \item % 1 
+    a)
+    The only key in R is CE.
+       \\ \\
+    b)
+    Lets assume the given FD’s do not form a minimal basis. Make a set S to hold the FD's in minimal cover.
+    \\ \\
+    The set of FD's are: 
+    $\{A\rightarrow B, CD\rightarrow A, CB\rightarrow D, CE\rightarrow D, AE\rightarrow F \}$
+    \\  \\
+    To find minimal basis we first start with 
+    reducing left hand side of every FD X $\rightarrow$ Y where $|X|\geq 2$ in the set. Let's make a set L to hold these FD's:
+    \\
+    \\
+    CD $\rightarrow$ A\\
+    $C^{+}=C$, and $D^{+}=D$\\
+    So L = \{CD $\rightarrow$ A\}
+    \\
+    \\
+    CB $\rightarrow$ D\\
+    $C^{+}=C$, and $B^{+}=B$\\
+    So L = \{CD $\rightarrow$ A, CB $\rightarrow$ D\}\\\\
+    CE $\rightarrow$ D\\
+    $C^{+}=C$, and $E^{+}=E$\\
+    So L = \{CD $\rightarrow$ A, CB $\rightarrow$ D, CE $\rightarrow$ D\}\\\\
+    AE $\rightarrow$ F\\
+    $A^{+}=AB$, and $E^{+}=E$\\
+    So L = \{CD $\rightarrow$ A, CB $\rightarrow$ D, CE $\rightarrow$ D,  AE $\rightarrow$ F\}\\\\
+    Next Let's remove any redundant FD's, first lets look at the FD's in L, if they are not redundant store them in S, as they are needed:\\\\
+    CD $\rightarrow$ A, pretend this doesn't exist\\
+    Then, $CD^{+}=CD$,  so we need it\\
+    So S = \{CD $\rightarrow$ A\}\\\\
+    CB $\rightarrow$ D, pretend this doesn't exist\\
+    Then, $CB^{+}=CB$, so we need it\\
+    So S = \{CD $\rightarrow$ A, CB $\rightarrow$ D\}\\\\
+    CE $\rightarrow$ D, pretend this doesn't exist\\
+    Then, $CE^{+}=CE$, so we need it\\
+    So S = \{CD $\rightarrow$ A, CB $\rightarrow$ D, CE $\rightarrow$ D\}\\\\
+    CE $\rightarrow$ D, pretend this doesn't exist\\
+    Then, $CE^{+}=CE$, so we need it\\
+    So S = \{CD $\rightarrow$ A, CB $\rightarrow$ D, CE $\rightarrow$ D\}\\\\
+    AE $\rightarrow$ F, pretend this doesn't exist\\
+    Then, $AE^{+}=ABE$, so we need it\\
+    So S = \{CD $\rightarrow$ A, CB $\rightarrow$ D, CE $\rightarrow$ D, AE $\rightarrow$ F\}\\\\
+    Next look at the rest of the FD's:\\\\
+    A $\rightarrow$ B, pretend this doesn't exist\\
+    Then, $A^{+}=A$, so we need it\\
+    So S = \{A $\rightarrow$ B, CD $\rightarrow$ A, CB $\rightarrow$ D, CE $\rightarrow$ D, AE $\rightarrow$ F\}\\\\
+  	Now S is the set of FD's in minimal basis, but S = the set of given FD's.\\
+  	Contradiction, the given FD’s form a minimal basis.
+    \\
+    \\
+    c) \\ 
+    Minimal basis of the FD's are: $\{A\rightarrow B, CD\rightarrow A, CB\rightarrow D, CE\rightarrow D, AE\rightarrow F \}$
+    \\ \\
+    Using these FD's we get relations:
+    $R_1(\textbf{\underline{A}}B), R_2(\textbf{\underline{CD}}A), R_3(\textbf{\underline{CB}}D), R_4(\textbf{\underline{CE}}D), R_5(\textbf{\underline{AE}}F)  $
+    \\ Where the underlined letters are the keys. 
+    \\ The key for this schema is $R_4$ because it has the key for R.  
+    \\ \\
+    d) \\
+    No, all the relations in part c) are in BCNF because every FD in a relation has its left hand side be the superkey for that relation.
+    \\
+    \\
+    \item %2 
+   	a)\\\\
+    This is true, here is a direct proof.
+    \\ \\ 
+    Assume R is a relation decomposed into relations $R_1$ and $R_2$. And assume $R_1 \cap R_2 = A$, so they share a single attribute A, and lets assume A is a key for either $R_1$ or $R_2$.\\
+    \\
+    We want to prove that $R_1 \bowtie R_2 = R$, proving the decomposition is lossless. 
+    \\
+    \\ 
+    First, notice that $R \subseteq R_1 \bowtie R_2$. This is because $R_1$ and $R_2$ are decompositions of R, joining them over a shared attribute A will give a cross product of the two relations and every attribute of R will be in $R_1 \bowtie R_2$ because a cross product gives us every combination.
+    \\
+    \\
+    Next, we will prove that $R_1 \bowtie R_2 \subseteq R$. 
+    \\ \\
+    First recall $R_1 \cap R_2 = A$, where A a key in either $R_1$ or $R_2$.
+    This means that when natural joining $R_1$ and $R_2$, the relation with A as its key, it's tuples will appear once for every appearance of A in the join. So $R_1 \bowtie R_2 \subseteq R$ because joining over a key means no extra tuples get formed, and $|R_1 \bowtie R_2| = |R|$. 
+    \\
+    \\ 
+    Since $R \subseteq R_1 \bowtie R_2$ and $R_1 \bowtie R_2 \subseteq R$ then $R_1 \bowtie R_2 = R$. So the decomposition is lossless.
+    \\
+    \\
+    b)\\
+    Yes, if a relation is in BCNF it is guaranteed to be in 3NF. This is because since R is in BCNF the left hand side of every FD in R will be a superkey, satisfying the 3NF requirement.
+    \\ \\
+    However a relation being in 3NF is not guaranteed to be in BCNF, because a relation can still be in 3NF and not satisfy the requirement that every FD's left hand side is a superkey. 
+    
+    \item % 3
+    a) This is false. 
+    \\ Take this relation for example:
+  
+    	\begin{table}[h]
+    	\centering
+		\begin{tabular}{lll}
+		\textbf{A}&\textbf{B}&\textbf{C}\\
+		a  & b & c \\
+		a1 & b & c
+		\end{tabular}
+		\end{table}
+		The functional dependency $A \rightarrow B$ holds because, $a \rightarrow b$ and $a1 \rightarrow b$  both hold.
+		\\
+		But, $b \rightarrow c$ and $b \rightarrow c1$ means the  functional dependency $B \rightarrow C$ does not hold.
+		\\ \\
+		So,  $A \rightarrow B$ does not imply $B \rightarrow C$.
+		\\ \\
+		b) This is false.
+		\\ Take this relation for example:
+		\begin{table}[h]
+		  \centering
+		\begin{tabular}{lll}
+			\textbf{A}&\textbf{B}&\textbf{C}\\
+			a  & b  & c  \\
+			a  & b1 & c1 \\	
+			a1 & b  & c2
+		\end{tabular}
+		\end{table}
+		\\
+		The functional dependency $AB \rightarrow C$ holds because ($a,b \rightarrow c$) and ($a,b1 \rightarrow c1$) and ($a1,b \rightarrow c2$) all hold.
+		\\
+		\\
+		However, since ($a \rightarrow c$) and ($a1 \rightarrow c$),
+		$A \rightarrow C$ does not hold. \\
+		Also, since ($b \rightarrow c$) and ($b \rightarrow c2$),
+		$B \rightarrow C$ does not hold.
+		\\ \\
+		So,  $AB \rightarrow C$ does not imply $A \rightarrow C$ and $B \rightarrow C$ .
+		
+    \item %4
+       
+
+\end{enumerate}
+
+
+\end{document}
