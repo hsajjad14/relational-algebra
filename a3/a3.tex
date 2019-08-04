@@ -170,9 +170,13 @@
 		\begin{adjustbox}{width=1.1\textwidth}
 		\begin{tabular}{llllllllllllll}
 			\textbf{city}&\textbf{phone}&\textbf{manager}&\textbf{bname}&\textbf{instock}&\textbf{calories}&\textbf{date}&\textbf{price}&\textbf{loyalty}&\textbf{bsize}&\textbf{tid}&\textbf{numTransactions}&\textbf{home\_store}&\textbf{cid}\\
-			Toronto & 403 & Tom & apple & 2 & 200 & 2019-05-05 & 4.0 & 111 & r  & 1 &4 & Toronto & 10044\\
-			Toronto & 403 & Tom & apple & 1 & 200 & 2019-05-06 & 4.0 & 112 & r  & 1 &14 & Toronto & 10045 \\	
-			Chicago & 905 & Henry & apple & 8 & 400 & 2019-05-05 & 4.0 & 111 & l  & 1 &4 & Toronto & 10044
+			Toronto & 905 & Tom & apple & 2 & 200 & 2019-05-05 & 4.0 & 111 & r  & 100 &4 & Toronto & 10044\\
+			Toronto & 905 & Tom & apple & 1 & 200 & 2019-05-06 & 4.0 & 112 & r  & 010 &14 & Toronto & 10045 \\	
+			Toronto & 905 & Tom & green & 5 & 400 & 2019-05-06 & 5.00 & null & r & 1011 & null & null & 0011 \\
+			Toronto & 905 & Tom & brown & 10 & 400 & null       & 1.0  & null & r & null & null & null & null \\
+			Toronto & 905 & Tom & apple & 3  & 450 & 2019-05-08 & 5.00 & 111  & l & 1110 & 5    & Toronto & 10044 \\
+			Boston  & 411 & James & purple & 9  & 200 & 2019-05-05 & 3.00 & 111  & r & 11010 & 100  & Boston  & 10   \\
+			Chicago & 403 & Henry & apple & 8 & 400 & 2019-05-05 & 4.0 & 111 & l  & 010 &4 & Toronto & 10044\\
 		\end{tabular}
 		\end{adjustbox}
 		\end{table}
@@ -235,6 +239,23 @@
 		 \textbf{loyalty\_card}(\underline{loyalty, cid}, numTransactions, home\_store)\\
 		 \textbf{transactions}(\underline{tid}, city, bname, bsize, date, loyalty, cid)\\\\
 	e)
+	
+	f) From part e) the relations in the fruits.ddl file are:\\\\
+	\textbf{juice\_stock}(\underline{city, bname, bsize}, instock)\\
+		 \textbf{store}(\underline{city},phone,manager)\\
+		 \textbf{beverages}(\underline{bname, bsize}, calories)\\
+		 \textbf{beverage\_price}(\underline{bname, bsize, loyalty}, price)\\
+		 \textbf{loyalty\_card}(\underline{loyalty, cid}, numTransactions, home\_store)\\
+		 \textbf{transactions}(\underline{tid}, city, bname, bsize, date, loyalty, cid)\\\\
+		 In the store table, each store is in a single city so we can identify each store with a unique city, using that as our key. Also a store must have a phone number and manager, so those can't be null.\\\\
+		 In the beverages table we want to identify every beverage available, a beverage is identified by it's name and size. Also every beverage has calories, so that can't be null.\\\\
+		 The juice\_stock table keeps track of the stock of beverages in each store. 
+		 Every store can have different stocks of juices so it must be identified by the city (store), the beverage name, and beverage size. A juice can only be in stock if it exists, for a juice to exist it must be in the beverages table, so beverage\_size and beverage\_name in juice stock reference beverage\_size and beverage\_name in beverages, a foreign key.\\\\
+		 The beverage\_prices table holds the price of every beverage. The price can be discounted if a loyalty card is used. So loyalty is in the key along with beverage\_name and beverage\_size, but since it can be null, we have a trigger to replace the null with 'None'. \\\\
+		 The loyalty\_card table keeps track of the loyalty cards that customers hold, the key is a customer id and loyalty card, on the card it holds number of transactions, and home store a city which references a city from store table.\\\\
+		 The transactions table holds transaction id the key, city where the transaction occurred which references cities from store table. beverage\_name and beverage\_size are a foreign key referencing  beverage\_name and beverage\_size from beverages table.
+		 
+	
 		
 	
        

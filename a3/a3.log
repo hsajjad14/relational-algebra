@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  4 AUG 2019 14:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  4 AUG 2019 17:53
 entering extended mode
 **./a3.tex
 (a3.tex
@@ -505,133 +505,168 @@ Underfull \hbox (badness 10000) in paragraph at lines 126--153
  []
 
 
-Overfull \hbox (46.99155pt too wide) in paragraph at lines 170--178
+Overfull \hbox (47.00261pt too wide) in paragraph at lines 170--182
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--214
+Underfull \hbox (badness 10000) in paragraph at lines 155--218
 
  []
 
 [3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 215--238
+Underfull \hbox (badness 10000) in paragraph at lines 219--242
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--238
+Underfull \hbox (badness 10000) in paragraph at lines 219--242
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--238
+Underfull \hbox (badness 10000) in paragraph at lines 219--242
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--238
+Underfull \hbox (badness 10000) in paragraph at lines 219--242
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--238
+Underfull \hbox (badness 10000) in paragraph at lines 219--242
 
  []
 
-[5] (a3.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--257
+
+ []
+
+[5] [6] (a3.aux) ) 
 Here is how much of TeX's memory you used:
  3922 strings out of 492946
  59711 string characters out of 3126266
- 134928 words of memory out of 3000000
+ 139928 words of memory out of 3000000
  7740 multiletter control sequences out of 15000+200000
  11517 words of font info for 45 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,37p,314b,421s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmbx10.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/haide/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/haide/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/haid
-e/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
-:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmr12.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr17.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmr7.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on a3.pdf (5 pages, 121450 bytes).
+ 41i,10n,37p,392b,421s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmbx10.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/haide/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/haide/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/
+haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pf
+b><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr12.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr17.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/haide/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on a3.pdf (6 pages, 124252 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
+ 57 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
