@@ -7,7 +7,7 @@
 %\usepackage{eulervm, bookman}   % fonts for math & symbols
 \usepackage{mathtools}
 \usepackage{fullpage}          % fullpage margins
-
+\usepackage{adjustbox}
 \begin{document}
 % Title 
 \title{CSC343 A3}
@@ -152,6 +152,91 @@
 		So,  $AB \rightarrow C$ does not imply $A \rightarrow C$ and $B \rightarrow C$ .
 		
     \item %4
+    In this question, bname = "beverage name" and bsize = "beverage size". Also denote tid to be "transaction id" and cid is "customer id".\\\\
+	a)
+	R(city, phone, manager, bname, instock, calories, date ,price,\\
+	 loyalty, bsize, tid, numTransactions, home\_store, cid)\\\\
+	b)\\The functional dependencies are as follows:\\\\
+		city $\rightarrow$ phone, manager\\
+		city, bname, bsize $\rightarrow$ instock\\
+		bname, bsize $\rightarrow$ calories\\
+		tid $\rightarrow$ date, loyalty, cid, bname, bsize, city\\
+		bname, bsize, loyalty $\rightarrow$ price\\
+		loyalty, cid $\rightarrow$ numTransactions, home\_store\\
+		R[home\_store] $\subseteq$ R[city]
+	\\\\\\
+	c)\begin{table}[h]
+		  \centering
+		\begin{adjustbox}{width=1.1\textwidth}
+		\begin{tabular}{llllllllllllll}
+			\textbf{city}&\textbf{phone}&\textbf{manager}&\textbf{bname}&\textbf{instock}&\textbf{calories}&\textbf{date}&\textbf{price}&\textbf{loyalty}&\textbf{bsize}&\textbf{tid}&\textbf{numTransactions}&\textbf{home\_store}&\textbf{cid}\\
+			Toronto & 403 & Tom & apple & 2 & 200 & 2019-05-05 & 4.0 & 111 & r  & 1 &4 & Toronto & 10044\\
+			Toronto & 403 & Tom & apple & 1 & 200 & 2019-05-06 & 4.0 & 112 & r  & 1 &14 & Toronto & 10045 \\	
+			Chicago & 905 & Henry & apple & 8 & 400 & 2019-05-05 & 4.0 & 111 & l  & 1 &4 & Toronto & 10044
+		\end{tabular}
+		\end{adjustbox}
+		\end{table}
+		\\\\
+		The redundancy anomaly here would be that there are multiple tuples with duplicate information with city Toronto. For every transaction in the same city, we will get back data we already know and don't need.\\\\
+		The deletion anamoly would be that if i delete manager Henry for Chicago then the complete information about the store chicago will be deleted as well.\\\\
+		The update anamoly would be that if i update manager Tom for Toronto to another manager name then i will have to update other tuples for Toronto as well.
+		\\\\
+	d) First, to find the key of R, we will find the closure of every subset of attributes in R:\\\\
+	$city^{+}$ = city, phone, manager\\
+	  $city,bname,bsize^{+}$ = city, bname, bsize, phone, manager, instock\\
+	  $bname,bsize^{+}$=calories\\
+	  $tid^{+}$=date, loyalty, cid, bname, bsize, city, phone, manager, price, calories, instock, numTransactions, home\_store\\
+	  $bname,bsize,loyalty^{+}=bname,bsize,loyalty,price,calories$\\
+	  $loyalty,cid^{+}=loyalty,cid,numTransactions,home_store$\\\\
+	  Therefore key is tid since all the attributes of relation R are in its closure.\\\\
+	  BCNF process:\\\\
+	  city $\rightarrow$ phone, manager\\
+	  city is not the key therefore we need to decompose into two relations.\\
+	  \textbf{S1}(city,phone,manager)\\
+	  \textbf{S2}(city, bname, instock, calories, date, price, loyalty, bsize, tid, numTransactions, home\_store, cid)\\
+	  For S1 city is the key and therefore S1 is in bcnf.\\
+	  This FD:\\
+	  city, bname, bsize $\rightarrow$ instock\\
+		  Is in S2, and tid is the key in S2. This FD fails to contain it in it's left hand side. So S2 is not in BCNF.\\
+		  Now decompose S2 into: \\\\
+	  \textbf{S3}(city, bname, bsize, instock)\\
+	  \textbf{S4}(city, bname, bsize, calories, date, price, loyalty, tid, numTransactions, home\_store,cid)\\
+	  For S3 (city, bname, bsize) is the key and the projected fd is city,bname,bsize $\rightarrow$ instock
+	  hence S3 is in bcnf.\\
+	  For S4 key is tid and the following projected fd:\\
+		bname,bsize $\rightarrow$ calories\\
+		violates bcnf because it doesn't contain tid. Therefore we need to decompose S4 further.\\\\
+	  \textbf{S5}(bname,bsize,calories)\\
+	  \textbf{S6}(city, bname, bsize, date, price, loyalty, tid, numTransactions, home\_store, cid)\\
+	  In S5 the key is bname, bsize and only projected fd bname, bsize $\rightarrow$ calories satisfies bcnf. Hence
+	  S5 is in bcnf.\\
+	  Now for S6 we have key is tid and the following prjected fds:
+		
+		bname, bsize, loyalty $\rightarrow$ price\\
+	  This FD violates bcnf. Hence lets decompose S6 further.\\\\
+	  \textbf{S7}(bname, bsize, loyalty,price)\\
+	  \textbf{S8}(city, bname, bsize, date, loyalty, tid, numTransactions, home\_store, cid)\\
+	  Now for S7 key is bname, bsize, loyalty and the only projected fd bname ,bsize, loyalty $\rightarrow$ price\\ satisfies bcnf.
+	  hence S7 is in bcnf.\\
+	  Now for S8 key is tid and the following projected fd \\		loyalty,cid $\rightarrow$ numTransactions,home\_store\\
+	 violates bcnf property. Hence S8 needs to be decomposed further.\\\\
+	   \textbf{S9}(loyalty, cid, numTransactions, home\_store)\\
+	   \textbf{S10}(city, bname, bsize ,date, loyalty, tid, cid)\\
+	  For S9 key is loyalty, cid and the only projected fd is loyalty, cid $\rightarrow$ numTransactions ,home\_store and this fd satisfies bcnf property.
+	  hence S9 is in bcnf.\\
+	  For S10 key is tid and only one FD fits in it.\\
+		tid $\rightarrow$ date,loyalty,cid,bname,bsize,city\\
+	  Since the key is tid and the projected fd satisfies bcnf property. Therefore S10 is is in bcnf.\\\\
+	  All relations after renaming to appropriate names:\\\\
+		 \textbf{juice\_stock}(\underline{city, bname, bsize}, instock)\\
+		 \textbf{store}(\underline{city},phone,manager)\\
+		 \textbf{beverages}(\underline{bname, bsize}, calories)\\
+		 \textbf{beverage\_price}(\underline{bname, bsize, loyalty}, price)\\
+		 \textbf{loyalty\_card}(\underline{loyalty, cid}, numTransactions, home\_store)\\
+		 \textbf{transactions}(\underline{tid}, city, bname, bsize, date, loyalty, cid)\\\\
+	e)
+		
+	
        
 
 \end{enumerate}

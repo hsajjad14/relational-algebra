@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  3 AUG 2019 21:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  4 AUG 2019 14:14
 entering extended mode
 **./a3.tex
 (a3.tex
@@ -164,7 +164,71 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 sty"
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip50
-) (a3.aux)
+)
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\adjustbo
+x.sty"
+Package: adjustbox 2019/01/04 v1.2 Adjusting TeX boxes (trim, clip, ...)
+
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xkeyval\xkeyval.st
+y"
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkeyval.
+tex"
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkvutils
+.tex"
+\XKV@toks=\toks20
+\XKV@tempa@toks=\toks21
+)
+\XKV@depth=\count104
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\adjcalc.
+sty"
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\trimclip
+.sty"
+Package: trimclip 2018/04/08 v1.1 Trim and clip general TeX material
+
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/latex/collectbox\collect
+box.sty"
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box29
+)
+\tc@llx=\dimen123
+\tc@lly=\dimen124
+\tc@urx=\dimen125
+\tc@ury=\dimen126
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\tc-pdfte
+x.def"
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen127
+\adjbox@Height=\dimen128
+\adjbox@Depth=\dimen129
+\adjbox@Totalheight=\dimen130
+\adjbox@pwidth=\dimen131
+\adjbox@pheight=\dimen132
+\adjbox@pdepth=\dimen133
+\adjbox@ptotalheight=\dimen134
+
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ifoddpage\ifoddpag
+e.sty"
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count105
+)
+("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/latex/varwidth\varwidth.
+sty"
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box30
+\sift@deathcycles=\count106
+\@vwid@loff=\dimen135
+\@vwid@roff=\dimen136
+)) (a3.aux)
 \openout1 = `a3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -183,17 +247,17 @@ LaTeX Font Info:    ... okay on input line 11.
 ("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/context/base\supp-pdf.mk
 ii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count104
-\scratchdimen=\dimen123
-\scratchbox=\box29
-\nofMPsegments=\count105
-\nofMParguments=\count106
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count107
-\MPscratchDim=\dimen124
-\MPnumerator=\count108
-\makeMPintoPDFobject=\count109
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count107
+\scratchdimen=\dimen137
+\scratchbox=\box31
+\nofMPsegments=\count108
+\nofMParguments=\count109
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count110
+\MPscratchDim=\dimen138
+\MPnumerator=\count111
+\makeMPintoPDFobject=\count112
+\everyMPtoPDFconversion=\toks23
 )
 ("C:\Users\haide\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-
 base.sty"
@@ -440,28 +504,134 @@ Underfull \hbox (badness 10000) in paragraph at lines 126--153
 
  []
 
-[3] (a3.aux) ) 
+
+Overfull \hbox (46.99155pt too wide) in paragraph at lines 170--178
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--214
+
+ []
+
+[3] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 215--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--238
+
+ []
+
+[5] (a3.aux) ) 
 Here is how much of TeX's memory you used:
- 2918 strings out of 492946
- 42413 string characters out of 3126266
- 111056 words of memory out of 3000000
- 6770 multiletter control sequences out of 15000+200000
+ 3922 strings out of 492946
+ 59711 string characters out of 3126266
+ 134928 words of memory out of 3000000
+ 7740 multiletter control sequences out of 15000+200000
  11517 words of font info for 45 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,27p,314b,283s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,10n,37p,314b,421s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmbx10.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/haide/AppData/Local/Programs/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/haide/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/haid
-e/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/haid
+e/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
 :/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmr17.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr7.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb>
-Output written on a3.pdf (3 pages, 95788 bytes).
+cmr12.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr17.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb><C:/Users/haide/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on a3.pdf (5 pages, 121450 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
+ 54 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
