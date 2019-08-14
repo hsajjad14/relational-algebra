@@ -170,20 +170,26 @@
 		\begin{adjustbox}{width=1.1\textwidth}
 		\begin{tabular}{llllllllllllll}
 			\textbf{city}&\textbf{phone}&\textbf{manager}&\textbf{bname}&\textbf{instock}&\textbf{calories}&\textbf{date}&\textbf{price}&\textbf{loyalty}&\textbf{bsize}&\textbf{tid}&\textbf{numTransactions}&\textbf{home\_store}&\textbf{cid}\\
-			Toronto & 905 & Tom & apple & 2 & 200 & 2019-05-05 & 4.0 & 111 & r  & 100 &4 & Toronto & 10044\\
-			Toronto & 905 & Tom & apple & 1 & 200 & 2019-05-06 & 4.0 & 112 & r  & 010 &14 & Toronto & 10045 \\	
-			Toronto & 905 & Tom & green & 5 & 400 & 2019-05-06 & 5.00 & null & r & 1011 & null & null & 0011 \\
+			Toronto & 905 & Tom & apple & 2 & 200 & 2019-05-05 & 4.0 & 111 & r  & 1005 &4 & Toronto & 10044\\
+			Toronto & 905 & Tom & apple & 1 & 200 & 2019-05-06 & 4.0 & 112 & r  & 0109 &14 & Toronto & 10045 \\	
+			Toronto & 905 & Tom & green & 5 & 400 & 2019-05-06 & 5.00 & null & r & 1011 & null & null & 10011 \\
 			Toronto & 905 & Tom & brown & 10 & 400 & null       & 1.0  & null & r & null & null & null & null \\
-			Toronto & 905 & Tom & apple & 3  & 450 & 2019-05-08 & 5.00 & 111  & l & 1110 & 5    & Toronto & 10044 \\
-			Boston  & 411 & James & purple & 9  & 200 & 2019-05-05 & 3.00 & 111  & r & 11010 & 100  & Boston  & 10   \\
-			Chicago & 403 & Henry & apple & 8 & 400 & 2019-05-05 & 4.0 & 111 & l  & 010 &4 & Toronto & 10044\\
+			Toronto & 905 & Tom & apple & 3  & 450 & 2019-05-08 & 5.00 & 111  & l & 1005 & 5    & Toronto & 10044 \\
+			Boston  & 411 & James & purple & 9  & 200 & 2019-05-05 & 3.00 & 121  & r & 1101 & 100  & Boston  & 10043  \\
+			Chicago & 403 & Henry & apple & 8 & 400 & 2019-05-05 & 4.0 & 111 & l  & 0103 &4 & Toronto & 10044\\
+			Montreal & 514 & Jerry & apple & 12 & 400 & 2018-05-05 & 4.0 & 122 & l  & 4044 &2 & Toronto & 10046\\
+			Montreal & 514 & Jerry & apple & 12 & 200 & 2018-05-05 & 4.0 & 123 & r  & 4059 &6 & Montreal & 10047\\
+			Boston  & 411 & James & mango & 19  & 300 & 2019-06-05 & 3.00 & 124  & r & 1108 & 100  & Boston  & 10050  \\
+			Chicago & 403 & Henry & mango & 8 & 600 & 2019-08-05 & 4.0 & 136 & l  & 0100 &4 & Toronto & 10049\\
+			
+			
 		\end{tabular}
 		\end{adjustbox}
 		\end{table}
 		\\\\
 		The redundancy anomaly here would be that there are multiple tuples with duplicate information with city Toronto. For every transaction in the same city, we will get back data we already know and don't need.\\\\
-		The deletion anamoly would be that if i delete manager Henry for Chicago then the complete information about the store chicago will be deleted as well.\\\\
-		The update anamoly would be that if i update manager Tom for Toronto to another manager name then i will have to update other tuples for Toronto as well.
+		The deletion anamoly would be that if I delete manager Henry for Chicago then the complete information about the store chicago will be deleted as well.\\\\
+		The update anamoly would be that if I update manager Tom for Toronto to another manager name then I will have to update other tuples for Toronto as well.
 		\\\\
 	d) First, to find the key of R, we will find the closure of every subset of attributes in R:\\\\
 	$city^{+}$ = city, phone, manager\\
@@ -238,9 +244,16 @@
 		 \textbf{beverage\_price}(\underline{bname, bsize, loyalty}, price)\\
 		 \textbf{loyalty\_card}(\underline{loyalty, cid}, numTransactions, home\_store)\\
 		 \textbf{transactions}(\underline{tid}, city, bname, bsize, date, loyalty, cid)\\\\
-	e)
+	e)After bcnf normalization into different relations, we can easily store informarmation about a store in the store relation without first having a purchase made at the store
+	  as was the case in our previous relation where we had to have an order at a particular store before we could input information about that store in our relations.
+	  \\\\
+	  Now if we decide to update the manager name for a store after a chnage of manager we can simply do that in the store relation without having to wory about updation elsewhere.
+	  \\\\
+	  Now incase of deleting an only order at a particular store, we can simply delete the order details from the transaction relation wihout having to delete the store information 
+	  as well as was the case in our previous relation where we had to delete the store info completely incase of an only order at a store.
+	  \\\\
 	
-	f) From part e) the relations in the fruits.ddl file are:\\\\
+	f) From part d) the relations in the fruits.ddl file are:\\\\
 	\textbf{juice\_stock}(\underline{city, bname, bsize}, instock)\\
 		 \textbf{store}(\underline{city},phone,manager)\\
 		 \textbf{beverages}(\underline{bname, bsize}, calories)\\
@@ -254,11 +267,6 @@
 		 The beverage\_prices table holds the price of every beverage. The price can be discounted if a loyalty card is used. So loyalty is in the key along with beverage\_name and beverage\_size, but since it can be null, we have a trigger to replace the null with 'None'. \\\\
 		 The loyalty\_card table keeps track of the loyalty cards that customers hold, the key is a customer id and loyalty card, on the card it holds number of transactions, and home store a city which references a city from store table.\\\\
 		 The transactions table holds transaction id the key, city where the transaction occurred which references cities from store table. beverage\_name and beverage\_size are a foreign key referencing  beverage\_name and beverage\_size from beverages table.
-		 
-	
-		
-	
-       
 
 \end{enumerate}
 

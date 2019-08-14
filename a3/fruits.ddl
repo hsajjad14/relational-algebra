@@ -242,3 +242,91 @@ create table transactions(
   foreign key (beverage_name, beverage_size) references beverages(beverage_name, beverage_size)
 
 );
+
+delete from loyalty_card;
+delete from beverage_prices;
+delete from juice_stock;
+delete from beverages;
+delete from store;
+delete from transactions;
+
+
+
+insert into beverages values ('Orange', 'regular', 100); --pass
+-- insert into beverages values ('Orange', 'large', 200); -- fail
+insert into beverages values ('Cola', 'regular', 100); -- pass
+insert into beverages values ('Apple', 'regular', 100); --pass
+insert into beverages values ('Apple', 'large', 500);--pass
+-- insert into beverages values ('Apple', 'regular', 400);--fail
+insert into beverages values ('Mountain Dew', 'regular', 400);--pass
+-- insert into beverages values ('Mountain Dew', 'large', 700);--fail
+insert into beverages values ('Mountain Dew', 'large', 800);--pass
+insert into beverages values ('Pineapple', 'regular', 250);--pass
+-- insert into beverages values ('Pineapple', 'large', 400);--fail
+insert into beverages values ('Pineapple', 'large',500);--pass
+
+
+
+-- should fail
+-- update beverages set calories = 500
+--    where beverage_name = 'Apple' and beverage_size = 'regular';
+
+-- should fail
+-- update beverages set calories = 200
+--   where beverage_name = 'Apple' and beverage_size = 'large';
+
+-- should pass
+  update beverages set calories = 600
+    where beverage_name = 'Apple' and beverage_size = 'large';
+
+
+-- stores
+--delete from store;
+insert into store values ('Toronto', '4167084988', 'Zain');
+-- insert into store values ('Toronto', '4161334000', 'Tom'); -- fails
+insert into store values ('Boston', '2222', 'Brady');
+insert into store values ('Chicago', '5197084988', 'James');
+insert into store values ('Balitamore', '5199085977', 'James');
+insert into store values ('Miami', '224567890', 'Jenny');
+insert into store values ('Malibu', '9875698456', 'David');
+
+-- juice stock
+--delete from juice_stock;
+insert into juice_stock values ('Toronto','Apple', 'regular', 2);
+insert into juice_stock values ('Toronto','Apple', 'regular', 3); -- add to 5
+insert into juice_stock values ('Boston','Apple', 'regular', 2);
+-- insert into juice_stock values ('Balitamore','Cola','large',5);--fail  because Cola in beverages table thus violating foreign key constraint
+-- insert into juice_stock values ('Balitamore','Cola','large',3);--fail  because Cola in beverages table thus violating foreign key constraint
+insert into juice_stock values ('Balitamore','Cola','regular',5);
+insert into juice_stock values ('Balitamore','Cola','regular',3);--pass and should sum up to 8
+
+
+-- juice prices
+--delete from beverage_prices;
+insert into beverage_prices values ('Apple', 'regular',null ,2.5);
+insert into beverage_prices values ('Apple', 'regular','premium' ,0.5);
+insert into beverage_prices values ('Cola', 'regular','premium' ,4.0);--pass
+-- insert into beverage_prices values ('Cola', 'large','premium' ,4.0); -- fail because no large cola in beverages table
+-- insert into beverage_prices values ('Mint', 'large','premium' ,4.0);--fail because no mint drink in beverages table
+-- insert into beverage_prices values ('Mojito', 'regular','premium' ,3.0);--fail because no mojito drink in beverages table
+
+
+-- loyalty_card
+insert into loyalty_card values ('premium', 111 , 1 ,'Toronto');
+insert into loyalty_card values ('premium', 111 , 4,'Toronto'); -- add to 5
+-- insert into loyalty_card values ('premium', 113 , 4,'New York'); -- fails, no city NewYork
+insert into loyalty_card values ('premium', 131 , 4,'Chicago');
+-- insert into loyalty_card values (null, 131 , 4,'Chicago');--violates null constraint
+-- insert into loyalty_card values ('premium', 131 , 4,'Chicago');--fail
+insert into loyalty_card values ('premium', 131 , 3,'Chicago');--should add upto 7 fro customer id 131
+-- insert into loyalty_card values ('premium', 144 , 4,'Montreal');--fails because no montreal city in store table
+insert into loyalty_card values ('premium', 131 , 3,'Toronto');-- passes as it increments the transactions for user 131.
+
+-- transactions
+insert into transactions values (1 , 'Toronto', 'Apple', 'regular', '2015-12-17', null, 011);
+-- insert into transactions values (1,'Toronto','Apple','regular','2019-05-05','premium',111);--fail because key 1 already exists
+-- insert into transactions values (5,'Madison','Mango','regular','2019-04-05','premium',111);--fail due to violation of foreign key values
+-- insert into transactions values (2,'Montreal','Apple','regular','2019-04-05',null,112);--fails due to montreal not being in store table
+insert into transactions values (2,'Balitamore','Apple','regular','2019-06-05',null,112);--pass
+insert into transactions values (3,'Balitamore','Cola','regular','2019-06-05',null,197);--pass
+-- insert into transactions values (3,'Balitamore','Aoole','regular','2018-06-07','premium',201);--fails because transaction id 3 already exists

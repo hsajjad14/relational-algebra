@@ -1,0 +1,87 @@
+
+dbsrv1:~/csc343db/a3$ psql csc343h-sajjadh2
+psql (9.5.18)
+Type "help" for help.
+
+csc343h-sajjadh2=> \i fruits.ddl
+psql:fruits.ddl:3: NOTICE:  drop cascades to 11 other objects
+DETAIL:  drop cascades to table fruits.store
+drop cascades to type fruits.size
+drop cascades to table fruits.beverages
+drop cascades to function fruits.bevdelete()
+drop cascades to table fruits.juice_stock
+drop cascades to function fruits.increment_instock()
+drop cascades to table fruits.beverage_prices
+drop cascades to function fruits.bprice_checknull()
+drop cascades to table fruits.loyalty_card
+drop cascades to function fruits.increment_transactions()
+drop cascades to table fruits.transactions
+DROP SCHEMA
+CREATE SCHEMA
+SET
+CREATE TABLE
+CREATE TYPE
+CREATE TABLE
+CREATE FUNCTION
+CREATE TRIGGER
+CREATE TABLE
+CREATE FUNCTION
+CREATE TRIGGER
+CREATE TABLE
+CREATE FUNCTION
+CREATE TRIGGER
+CREATE TABLE
+CREATE FUNCTION
+CREATE TRIGGER
+CREATE TABLE
+DELETE 0
+DELETE 0
+DELETE 0
+DELETE 0
+DELETE 0
+DELETE 0
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+UPDATE 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 0
+INSERT 0 1
+INSERT 0 1
+INSERT 0 0
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 0
+INSERT 0 1
+INSERT 0 0
+INSERT 0 0
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+csc343h-sajjadh2=> \d
+              List of relations
+ Schema |      Name       | Type  |  Owner
+--------+-----------------+-------+----------
+ fruits | beverage_prices | table | sajjadh2
+ fruits | beverages       | table | sajjadh2
+ fruits | juice_stock     | table | sajjadh2
+ fruits | loyalty_card    | table | sajjadh2
+ fruits | store           | table | sajjadh2
+ fruits | transactions    | table | sajjadh2
+(6 rows)
+
+csc343h-sajjadh2=> \q
+dbsrv1:~/csc343db/a3$
